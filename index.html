@@ -4,16 +4,66 @@
     <meta charset="UTF-8">
     <title>YAChart</title>
 
-    <script src="src/oop.js"></script>
-    <script src="src/bindings.js"></script>
-    <script src="src/index.js"></script>
+    <script>
+
+        [
+        	'dist/src/chart.js',
+        	'dist/src/chart/point.js',
+        ].forEach(function(item){
+            document.write('<script src="'+item+'?'+Math.floor(Math.random() * 1000000000)+'"></sc'+'ript>');
+        });
+
+    </script>
+
 </head>
 <body>
 
+<div class="container tl-work-area" ng-controller="HomeController">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 tl-grap-container">
+            <div class="js-chart-red-one tl-grap-container-inner">
+                <canvas class="js-griddy-canvas" width="500" height="500">
+                </canvas>
+            </div>
+            <div class="test-forward">
+                <a class="test-forward-btn" href="javascript:void(0);">Test!</a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 tl-grap-container">
+            <div class="js-chart-blue-one tl-grap-container-inner">
+                <canvas class="js-griddy-canvas" width="300" height="300">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 tl-grap-container">
+            <div class="js-chart-green-one tl-grap-container-inner">
+                <canvas class="js-griddy-canvas" width="300" height="300">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 tl-grap-container">
+            <div class="js-chart-yellow-one tl-grap-container-inner">
+                <canvas class="js-griddy-canvas" width="300" height="300">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
-</script>
+    var chart = new Chart();
+    chart.test();
 
+//	new YAChart({
+//		scope: $('.js-chart-red-one'),
+//		data: [
+//			[7, 7],
+//			[25, 20],
+//			[40, 12]
+//		]
+//	});
+</script>
 
 </body>
 </html>
