@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <title>YAChart</title>
 
-    <script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/lodash/lodash.js"></script>
 
+    <script>
         [
+	        'src/util.js',
         	'dist/src/chart.js',
         	'dist/src/chart/point.js',
+	        'dist/src/chart/animationflow.js',
+	        'dist/src/chart/animationflow/task.js',
         ].forEach(function(item){
             document.write('<script src="'+item+'?'+Math.floor(Math.random() * 1000000000)+'"></sc'+'ript>');
         });
@@ -52,17 +57,15 @@
 
 <script>
 
-    var chart = new Chart();
-    chart.test();
+    var chart = new YAChart({
+	    scope: $('.js-chart-red-one'),
+		data: [
+			[7, 7],
+			[25, 20],
+			[40, 12]
+		]
+    });
 
-//	new YAChart({
-//		scope: $('.js-chart-red-one'),
-//		data: [
-//			[7, 7],
-//			[25, 20],
-//			[40, 12]
-//		]
-//	});
 </script>
 
 </body>

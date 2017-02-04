@@ -1,0 +1,4 @@
+YAChart.Canvas = class
+{
+
+};
