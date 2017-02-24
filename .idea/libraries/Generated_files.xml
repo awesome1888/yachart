@@ -1,17 +1,5 @@
 <component name="libraryTable">
   <library name="Generated files" type="javaScript">
-    <properties>
-      <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/dist/src/chart/canvas.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart/animationflow.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart/flow.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/util/baseobject.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart/shape/circle.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart/point.js" />
-        <item url="file://$PROJECT_DIR$/dist/src/chart/animationflow/task.js" />
-      </sourceFilesUrls>
-    </properties>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/dist/babeltest2.js" />
       <root url="file://$PROJECT_DIR$/dist/babeltest2.js" />
@@ -23,11 +11,23 @@
       <root url="file://$PROJECT_DIR$/dist/src/index/point.js" />
       <root url="file://$PROJECT_DIR$/dist/src/index.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/canvas.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/b.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/animationflow.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/flow.js" />
       <root url="file://$PROJECT_DIR$/dist/src/util/baseobject.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/shape/circle.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/a.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/point.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/animationflow/task.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/canvas.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/b.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/animationflow.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/flow.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/util/baseobject.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart/shape/circle.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/chart.js" />
+      <root url="file://$PROJECT_DIR$/dist/src/a.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/point.js" />
       <root url="file://$PROJECT_DIR$/dist/src/chart/animationflow/task.js" />
     </CLASSES>

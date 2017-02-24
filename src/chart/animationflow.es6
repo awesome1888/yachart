@@ -55,7 +55,7 @@ YAChart.AnimationFlow = class
 				}
 			}
 
-			for(k = 0; k < done.length; k++)
+			for(let k = 0; k < done.length; k++)
 			{
 				this.done(done[k], true);
 			}

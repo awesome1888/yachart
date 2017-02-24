@@ -1,4 +1,4 @@
-Util.BaseObject = class {
+export class BaseObject {
 	constructor()
 	{
 

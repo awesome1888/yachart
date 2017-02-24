@@ -1,4 +1,6 @@
-class YAChart extends Util.BaseObject
+import {BaseObject} from '/src/util/baseobject.es6';
+
+let yachart = class YAChart extends BaseObject
 {
 	constructor(options)
 	{
@@ -344,7 +346,7 @@ class YAChart extends Util.BaseObject
 			);
 		}
 		step = 0;
-		for(k = 0; k < 50; k++)
+		for(let k = 0; k < 50; k++)
 		{
 			step += m.unitY;
 			if(step > m.widthPadded)
@@ -1048,4 +1050,6 @@ class YAChart extends Util.BaseObject
 		// todo: check if native or not
 		return this.sys.scope.get(0);
 	}
-}
+};
+
+export default yachart;
