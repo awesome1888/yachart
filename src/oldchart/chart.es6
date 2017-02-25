@@ -1,7 +1,7 @@
-import {BaseObject} from '/src/util/baseobject.es6';
+import {BaseClass} from '/src/util/baseclass.es6';
 import '/src/util.js';
 
-let yachart = class YAChart extends BaseObject
+let yachart = class YAChart extends BaseClass
 {
 	constructor(options)
 	{

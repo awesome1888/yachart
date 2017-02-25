@@ -7,9 +7,6 @@
     <link href="/dest/css/bootstrap.css" type="text/css" rel="stylesheet" />
     <link href="/dest/css/index.css" type="text/css" rel="stylesheet" />
     <link href="/dest/css/theme/common.css" type="text/css" rel="stylesheet" />
-
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <!--<script src="node_modules/lodash/lodash.js"></script>-->
     <script src="node_modules/requirejs/require.js"></script>
 
 </head>
@@ -46,11 +43,13 @@
 
 <script>
 
-    var r = require(['/dest/chart.js'], function(b){
+    var r = require(['/dest/chart.js', '/node_modules/jquery/dist/jquery.slim.js'], function(ChartModule){
 
-    	var YAChart = b.default;
-	    var chart = new YAChart({
+	    var chart = new ChartModule.Chart({
 		    scope: $('.js-chart-red-one'),
+
+
+
 		    data: [
 			    [7, 7],
 			    [25, 20],

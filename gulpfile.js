@@ -18,8 +18,10 @@ gulp.task('compileEs6', ['clean'], function() {
 });
 
 gulp.task('copyJs', ['clean'], function() {
-	return gulp.src('src/**/*.js')
-		.pipe(gulp.dest('dest'));
+	return gulp.src([
+		'src/**/*.js',
+		'node_modules/jquery/dist/jquery.slim.js'
+	]).pipe(gulp.dest('dest'));
 });
 
 gulp.task('compileLess', ['clean'], function () {
