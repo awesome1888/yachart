@@ -4,48 +4,39 @@
     <meta charset="UTF-8">
     <title>YAChart</title>
 
-    <link href="/dist/css/bootstrap.css" type="text/css" />
+    <link href="/dest/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="/dest/css/index.css" type="text/css" rel="stylesheet" />
+    <link href="/dest/css/theme/common.css" type="text/css" rel="stylesheet" />
 
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <!--<script src="node_modules/lodash/lodash.js"></script>-->
     <script src="node_modules/requirejs/require.js"></script>
 
-    <script>
-        [
-	        'src/util.js',
-        ].forEach(function(item){
-            document.write('<script src="'+item+'?'+Math.floor(Math.random() * 1000000000)+'"></sc'+'ript>');
-        });
-    </script>
-
 </head>
 <body>
 
-<div class="container tl-work-area" ng-controller="HomeController">
+<div class="container yach-work-area" ng-controller="HomeController">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 tl-grap-container">
-            <div class="js-chart-red-one tl-grap-container-inner">
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-red-one yach-grap-container-inner">
                 <canvas class="js-griddy-canvas" width="500" height="500">
                 </canvas>
             </div>
-            <div class="test-forward">
-                <a class="test-forward-btn" href="javascript:void(0);">Test!</a>
-            </div>
         </div>
-        <div class="col-xs-12 col-sm-6 tl-grap-container">
-            <div class="js-chart-blue-one tl-grap-container-inner">
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-blue-one yach-grap-container-inner">
                 <canvas class="js-griddy-canvas" width="300" height="300">
                 </canvas>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 tl-grap-container">
-            <div class="js-chart-green-one tl-grap-container-inner">
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-green-one yach-grap-container-inner">
                 <canvas class="js-griddy-canvas" width="300" height="300">
                 </canvas>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 tl-grap-container">
-            <div class="js-chart-yellow-one tl-grap-container-inner">
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-yellow-one yach-grap-container-inner">
                 <canvas class="js-griddy-canvas" width="300" height="300">
                 </canvas>
             </div>

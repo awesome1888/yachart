@@ -29,6 +29,23 @@
 		});
 	};
 
+	Util.extend = function(prev, next)
+	{
+		var mid = Object.create(prev);
+		if(next)
+		{
+			for (var k in next)
+			{
+				if(next.hasOwnProperty(k))
+				{
+					mid[k] = next[k];
+				}
+			}
+		}
+
+		return mid;
+	};
+
 	Util.Promise = function()
 	{
 		this.state = null;

@@ -23,7 +23,7 @@ gulp.task('copyJs', ['clean'], function() {
 });
 
 gulp.task('compileLess', ['clean'], function () {
-	return gulp.src('src/theme/**/*.less')
+	return gulp.src('src/css/**/*.less')
 		.pipe(less({
 			paths: [ path.join(__dirname, 'less', 'includes') ]
 		}))
