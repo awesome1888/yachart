@@ -66,8 +66,8 @@
 	Util.pos = function(node)
 	{
 		var rect = node.getBoundingClientRect();
-		var docElement = document.documentElement;
-		var body = document.body;
+		// var docElement = document.documentElement;
+		// var body = document.body;
 
 		// r.top = rect.top + (docElement.scrollTop || body.scrollTop);
 		// r.left = rect.left + (docElement.scrollLeft || body.scrollLeft);

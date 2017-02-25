@@ -32,7 +32,25 @@ export class Chart extends DOMController
 
 	render()
 	{
-		//layers
+		this.canvas.clear();
+		this.renderGridBackground();
+		this.renderGridAxis();
+		this.renderData();
+	}
+
+	renderGridBackground()
+	{
+
+	}
+
+	renderGridAxis()
+	{
+
+	}
+
+	renderData()
+	{
+
 	}
 
 	addPoints(data)
@@ -78,7 +96,7 @@ export class Chart extends DOMController
 	{
 		if(this.vars.canvas === undefined)
 		{
-			var canvas = new Canvas(this.control('canvas'));
+			let canvas = new Canvas(this.control('canvas'));
 			Util.bindEvent(canvas, 'canvasMouseMove', this.onCanvasMouseMove.bind(this));
 			Util.bindEvent(canvas, 'canvasClick', this.onCanvasClick.bind(this));
 

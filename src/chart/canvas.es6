@@ -36,6 +36,99 @@ export class Canvas
 		return false;
 	}
 
+	clear()
+	{
+		this.canvas.height = this.canvas.height;
+	}
+
+	rectangle(point, size, parameters)
+	{
+		parameters = parameters || {};
+
+		let ctx = this.canvas;
+		let o = (parameters.thickness || 1) % 2 ? 0.5 : 0;
+
+		ctx.beginPath();
+		ctx.rect(point.x + o, point.y + o, size.w, size.h);
+		ctx.closePath();
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = parameters.color || 'transparent';
+		ctx.fillStyle = parameters.bgColor || 'transparent';
+		ctx.fill();
+		ctx.stroke();
+	}
+
+	dot(point, radius, parameters)
+	{
+		parameters = parameters || {};
+
+		let ctx = this.canvas;
+
+		radius = radius || 2;
+		if(radius <= 0)
+		{
+			return;
+		}
+
+		ctx.beginPath();
+		ctx.arc(point.x, point.y, radius || 2, 0, Math.PI * 2, false);
+		ctx.closePath();
+		ctx.lineWidth = parameters.thickness || 1;
+		ctx.strokeStyle = parameters.color || 'transparent';
+		ctx.fillStyle = parameters.bgColor || 'transparent';
+		ctx.fill();
+		ctx.stroke();
+	}
+
+	nGon(points, parameters)
+	{
+		if(!points || !points.length)
+		{
+			return;
+		}
+
+		parameters = parameters || {};
+
+		let ctx = this.canvas;
+		let point = null;
+
+		ctx.beginPath();
+		for(let k = 0; k < points.length; k++)
+		{
+			if(k == 0)
+			{
+				ctx.moveTo(point.x, point.y);
+			}
+			else
+			{
+				ctx.lineTo(point.x, point.y);
+			}
+		}
+		ctx.closePath();
+
+		//ctx.lineWidth = thickness || 0;
+		//ctx.strokeStyle = color;
+		ctx.fillStyle = parameters.bgColor || 'transparent';
+		ctx.fill();
+	}
+
+	line(from, to, parameters)
+	{
+		parameters = parameters || {};
+
+		parameters.thickness = parameters.thickness || 1;
+
+		let ctx = this.canvas;
+		let o = parameters.thickness % 2 ? 0.5 : 0;
+
+		ctx.beginPath();
+		ctx.moveTo(from.x + o, from.y + o);
+		ctx.lineWidth = parameters.thickness || 1;
+		ctx.strokeStyle = parameters.color || 'transparent';
+		ctx.lineTo(to.x + o, to.y + o);
+		ctx.stroke();
+	}
+
 	onMouseMove()
 	{
 		Util.fireEvent(this, 'canvasMouseMove');
