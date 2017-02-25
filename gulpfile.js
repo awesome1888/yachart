@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
+const less = require('gulp-less');
+const path = require('path');
 
 gulp.task('clean', function() {
 	return gulp.src('dest', {read: false})
@@ -20,9 +22,23 @@ gulp.task('copyJs', ['clean'], function() {
 		.pipe(gulp.dest('dest'));
 });
 
+gulp.task('compileLess', ['clean'], function () {
+	return gulp.src('src/theme/**/*.less')
+		.pipe(less({
+			paths: [ path.join(__dirname, 'less', 'includes') ]
+		}))
+		.pipe(gulp.dest('dest/css'));
+});
+
+gulp.task('copyCss', ['clean'], function() {
+	return gulp.src([
+		'node_modules/bootstrap/dist/**/*.css',
+	]).pipe(gulp.dest('dest'));
+});
+
 gulp.task('watch', function() {
 	gulp.watch('src/**/*', ['build']);
 });
 
-gulp.task('build', ['compileEs6', 'copyJs']);
+gulp.task('build', ['compileEs6', 'copyJs', 'compileLess', 'copyCss']);
 gulp.task('default', ['build', 'watch']);
