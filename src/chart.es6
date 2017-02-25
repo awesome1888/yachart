@@ -1,13 +1,16 @@
-import {BaseClass} from '/src/util/baseclass.es6';
+import {DOMController} from '/src/util/domcontroller.es6';
 import {Manager as PointManager} from '/src/chart/point/manager.es6';
+import {Canvas} from '/src/chart/canvas.es6';
 
-export class Chart extends BaseClass
+export class Chart extends DOMController
 {
 	constructor(options)
 	{
 		super(options);
 
 		this.addPoints(this.option('data'));
+
+		this.canvas.fit(this.scope);
 		this.render();
 	}
 
@@ -20,6 +23,11 @@ export class Chart extends BaseClass
 			unitSize: 10, // in pixels
 			data: [],
 		};
+	}
+
+	bindEvents()
+	{
+		window.addEventListener('resize', this.onWindowResize.bind(this));
 	}
 
 	render()
@@ -43,6 +51,43 @@ export class Chart extends BaseClass
 		this.points.add(data);
 	}
 
+	onWindowResize()
+	{
+		if(this.canvas.fit(this.scope))
+		{
+			this.render();
+		}
+	}
+
+	onCanvasMouseMove()
+	{
+		console.dir('cmm');
+	}
+
+	onCanvasClick()
+	{
+		console.dir('ccl')
+	}
+
+	get defaultCode()
+	{
+		return 'chart';
+	}
+
+	get canvas()
+	{
+		if(this.vars.canvas === undefined)
+		{
+			var canvas = new Canvas(this.control('canvas'));
+			Util.bindEvent(canvas, 'canvasMouseMove', this.onCanvasMouseMove.bind(this));
+			Util.bindEvent(canvas, 'canvasClick', this.onCanvasClick.bind(this));
+
+			this.vars.canvas = canvas;
+		}
+
+		return this.vars.canvas;
+	}
+
 	get points()
 	{
 		if(this.vars.points === undefined)
@@ -51,10 +96,5 @@ export class Chart extends BaseClass
 		}
 
 		return this.vars.points;
-	}
-
-	get scope()
-	{
-		return this.option('scope');
 	}
 }

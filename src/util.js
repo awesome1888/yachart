@@ -1,32 +1,49 @@
 (function(){
 	"use strict";
 
-	window.Util = {};
-	Util.namespace = function(ns)
-	{
-		if(typeof ns == 'undefined')
-		{
-			return;
-		}
+	var eventBindings = new WeakMap();
 
-		ns = ns.toString().trim().split('.');
-		var i = 0;
-		var top = Util;
-		ns.forEach(function(item){
-			if(i == 0 && item == 'AW')
+	window.Util = {};
+
+	Util.isFunction = function(fn)
+	{
+		return fn && (Object.prototype.toString.call(fn) == '[object Function]');
+	};
+
+	Util.throttle = function(cb, timeout, opts)
+	{
+		if(!this.isFunction(cb))
+		{
+			return function(){};
+		}
+		timeout = timeout || 300;
+
+		var timer = null;
+
+		opts = opts || {};
+		var firstCall = opts.firstCall !== false;
+
+		return function()
+		{
+			if(timer !== null) // previous call still is in progress
 			{
 				return;
 			}
-			if(item.length == 0 || !/^[a-zA-Z0-9]+$/.test(item))
+
+			var args = arguments;
+			var ctx = this;
+
+			timer = setTimeout(function()
 			{
-				throw new Error('Illegal namespace item found: '+item);
-			}
-			if(typeof top[item] == 'undefined')
+				cb.apply(ctx, args);
+				timer = null;
+			}, timeout);
+
+			if(firstCall)
 			{
-				top[item] = {};
+				cb.apply(ctx, args); // call the first time
 			}
-			top = top[item];
-		});
+		}
 	};
 
 	Util.extend = function(prev, next)
@@ -44,6 +61,64 @@
 		}
 
 		return mid;
+	};
+
+	Util.pos = function(node)
+	{
+		var rect = node.getBoundingClientRect();
+		var docElement = document.documentElement;
+		var body = document.body;
+
+		// r.top = rect.top + (docElement.scrollTop || body.scrollTop);
+		// r.left = rect.left + (docElement.scrollLeft || body.scrollLeft);
+		// r.width = rect.right - rect.left;
+		// r.height = rect.bottom - rect.top;
+		// r.right = rect.right + (docElement.scrollLeft || body.scrollLeft);
+		// r.bottom = rect.bottom + (docElement.scrollTop || body.scrollTop);
+
+		return rect;
+	};
+
+	Util.bindEvent = function(obj, name, cb)
+	{
+		if(!eventBindings.has(obj))
+		{
+			eventBindings.set(obj, {});
+		}
+
+		var ref = eventBindings.get(obj);
+		if(!(name in ref))
+		{
+			ref[name] = [];
+		}
+
+		ref[name].push(cb);
+	};
+
+	Util.fireEvent = function(obj, name, params)
+	{
+		var ref = eventBindings.get(obj);
+		if(ref)
+		{
+			for(let boundName in ref)
+			{
+				if(ref.hasOwnProperty(boundName))
+				{
+					if(boundName === name)
+					{
+						for(var i = 0; i < ref[name].length; i++)
+						{
+							ref[name][i].apply(this, params);
+						}
+					}
+				}
+			}
+		}
+	};
+
+	Util.unBindEvent = function()
+	{
+		// todo:)
 	};
 
 	Util.Promise = function()
