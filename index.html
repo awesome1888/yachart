@@ -14,9 +14,9 @@
 
 <div class="container yach-work-area" ng-controller="HomeController">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div id="chart-red-one" class="yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="500" height="500">
+        <div id="chart-red-one" class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-grid-container yach-grap-container-inner">
+                <canvas width="500" height="500">
                 </canvas>
             </div>
         </div>
@@ -48,9 +48,9 @@
 	    var chart = new ChartModule.Chart({
 		    scope: document.getElementById('chart-red-one'),
 		    data: [
-			    [7, 7],
-			    [25, 20],
-			    [40, 12]
+			    [7, 7, 'Circle'],
+			    [12, 12, 'Circle'],
+			    [25, 12, 'Circle']
 		    ]
 	    });
     });

@@ -41,11 +41,11 @@ export class Canvas
 		this.canvas.height = this.canvas.height;
 	}
 
-	rectangle(point, size, parameters)
+	rectangle(point, size, parameters = {})
 	{
 		parameters = parameters || {};
 
-		let ctx = this.canvas;
+		let ctx = this.context;
 		let o = (parameters.thickness || 1) % 2 ? 0.5 : 0;
 
 		ctx.beginPath();
@@ -58,11 +58,11 @@ export class Canvas
 		ctx.stroke();
 	}
 
-	dot(point, radius, parameters)
+	circle(point, radius, parameters = {})
 	{
 		parameters = parameters || {};
 
-		let ctx = this.canvas;
+		let ctx = this.context;
 
 		radius = radius || 2;
 		if(radius <= 0)
@@ -80,7 +80,7 @@ export class Canvas
 		ctx.stroke();
 	}
 
-	nGon(points, parameters)
+	nGon(points, parameters = {})
 	{
 		if(!points || !points.length)
 		{
@@ -89,7 +89,7 @@ export class Canvas
 
 		parameters = parameters || {};
 
-		let ctx = this.canvas;
+		let ctx = this.context;
 		let point = null;
 
 		ctx.beginPath();
@@ -112,19 +112,18 @@ export class Canvas
 		ctx.fill();
 	}
 
-	line(from, to, parameters)
+	line(from, to, parameters = {})
 	{
 		parameters = parameters || {};
-
 		parameters.thickness = parameters.thickness || 1;
 
-		let ctx = this.canvas;
+		let ctx = this.context;
 		let o = parameters.thickness % 2 ? 0.5 : 0;
 
 		ctx.beginPath();
 		ctx.moveTo(from.x + o, from.y + o);
 		ctx.lineWidth = parameters.thickness || 1;
-		ctx.strokeStyle = parameters.color || 'transparent';
+		ctx.strokeStyle = parameters.color || '#000000';// 'transparent';
 		ctx.lineTo(to.x + o, to.y + o);
 		ctx.stroke();
 	}
@@ -137,6 +136,28 @@ export class Canvas
 	onClick()
 	{
 		Util.fireEvent(this, 'canvasClick');
+	}
+
+	get height()
+	{
+		// todo: cache here
+		return Util.pos(this.canvas).height;
+	}
+
+	get width()
+	{
+		// todo: cache here
+		return Util.pos(this.canvas).width;
+	}
+
+	get context()
+	{
+		if(this._context === undefined)
+		{
+			this._context = this.canvas.getContext('2d');
+		}
+
+		return this._context;
 	}
 
 	set canvas(canvas)

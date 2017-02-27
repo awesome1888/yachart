@@ -3,6 +3,7 @@ const clean = require('gulp-clean');
 const babel = require('gulp-babel');
 const less = require('gulp-less');
 const path = require('path');
+const plumber = require('gulp-plumber');
 
 gulp.task('clean', function() {
 	return gulp.src('dest', {read: false})
@@ -11,10 +12,11 @@ gulp.task('clean', function() {
 
 gulp.task('compileEs6', ['clean'], function() {
 	return gulp.src('src/**/*.es6')
-	.pipe(babel({
-		presets: ['es2015']
-	}))
-	.pipe(gulp.dest('dest'));
+	    .pipe(plumber())
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest('dest'));
 });
 
 gulp.task('copyJs', ['clean'], function() {
@@ -26,6 +28,7 @@ gulp.task('copyJs', ['clean'], function() {
 
 gulp.task('compileLess', ['clean'], function () {
 	return gulp.src('src/css/**/*.less')
+	    .pipe(plumber())
 		.pipe(less({
 			paths: [ path.join(__dirname, 'less', 'includes') ]
 		}))

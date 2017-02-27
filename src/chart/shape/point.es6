@@ -10,6 +10,16 @@ export class Point extends BaseClass
 		this.y = options.y;
 	}
 
+	render(grid)
+	{
+		throw new Error();
+	}
+
+	get location()
+	{
+		return {x: this.x, y: this.y};
+	}
+
 	get x()
 	{
 		return this.vars.x;

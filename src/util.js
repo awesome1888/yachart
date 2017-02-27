@@ -10,6 +10,11 @@
 		return fn && (Object.prototype.toString.call(fn) == '[object Function]');
 	};
 
+	Util.isArray = function(fn)
+	{
+		return fn && (Object.prototype.toString.call(fn) == '[object Array]');
+	};
+
 	Util.throttle = function(cb, timeout, opts)
 	{
 		if(!this.isFunction(cb))

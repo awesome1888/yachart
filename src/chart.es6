@@ -1,6 +1,5 @@
 import {DOMController} from '/src/util/domcontroller.es6';
-import {Manager as PointManager} from '/src/chart/point/manager.es6';
-import {Canvas} from '/src/chart/canvas.es6';
+import {Grid} from '/src/chart/grid.es6';
 
 export class Chart extends DOMController
 {
@@ -8,10 +7,11 @@ export class Chart extends DOMController
 	{
 		super(options);
 
-		this.addPoints(this.option('data'));
+		this.grid.addPoints(this.option('data'));
+		this.updateStyle();
+		this.render(true);
 
-		this.canvas.fit(this.scope);
-		this.render();
+		// todo: fire ready() event
 	}
 
 	get defaultOptions()
@@ -30,61 +30,32 @@ export class Chart extends DOMController
 		window.addEventListener('resize', this.onWindowResize.bind(this));
 	}
 
-	render()
+	render(isResized)
 	{
-		this.canvas.clear();
-		this.renderGridBackground();
-		this.renderGridAxis();
-		this.renderData();
-	}
-
-	renderGridBackground()
-	{
-
-	}
-
-	renderGridAxis()
-	{
-
-	}
-
-	renderData()
-	{
-
-	}
-
-	addPoints(data)
-	{
-		for(let item in data)
-		{
-			if(data.hasOwnProperty(item))
-			{
-				this.addPoint(data[item]);
-			}
-		}
-	}
-
-	addPoint(data)
-	{
-		this.points.add(data);
+		this.grid.render(isResized);
 	}
 
 	onWindowResize()
 	{
-		if(this.canvas.fit(this.scope))
-		{
-			this.render();
-		}
+		this.grid.render(true);
 	}
 
-	onCanvasMouseMove()
+	/**
+	 * re-read styles from the stylesheet
+	 */
+	updateStyle()
 	{
-		console.dir('cmm');
+		var grid = this.grid;
+
+		grid.paddingTopInstant = 10;
+		grid.paddingBottomInstant = 10;
+		grid.paddingLeftInstant = 50;
+		grid.paddingRightInstant = 10;
 	}
 
-	onCanvasClick()
+	get gridContainer()
 	{
-		console.dir('ccl')
+		return this.control('grid-container') || this.scope();
 	}
 
 	get defaultCode()
@@ -92,27 +63,21 @@ export class Chart extends DOMController
 		return 'chart';
 	}
 
-	get canvas()
+	get grid()
 	{
-		if(this.vars.canvas === undefined)
+		if(this.vars.grid === undefined)
 		{
-			let canvas = new Canvas(this.control('canvas'));
-			Util.bindEvent(canvas, 'canvasMouseMove', this.onCanvasMouseMove.bind(this));
-			Util.bindEvent(canvas, 'canvasClick', this.onCanvasClick.bind(this));
+			let grid = new Grid({
+				container: this.gridContainer,
+				unitSize: this.option('unitSize'),
+				fit: this.option('fit'),
+				align: this.option('align'),
+			});
+			//grid.center({x: 50, y: 50});
 
-			this.vars.canvas = canvas;
+			this.vars.grid = grid;
 		}
 
-		return this.vars.canvas;
-	}
-
-	get points()
-	{
-		if(this.vars.points === undefined)
-		{
-			this.vars.points = new PointManager();
-		}
-
-		return this.vars.points;
+		return this.vars.grid;
 	}
 }
