@@ -2,5 +2,20 @@
 
 * Data fit: fitX, fitY, fit
 * Data align: topright, topleft, bottomright, bottomleft
-* Grid axis and background is static, lines and dots - animated
-* Keep styles in style.less, should be function for update styles
+* Линии между кругами
+* Прореживание сетки
+* Шкала
+* Анимированные свойства, easing
+* Наведение мыши на круг, анимация
+    * Круги должны содержаться в виде упорядоченного множества, поиск должен быть бинарным
+* Появление круга, скрытие круга (со сдвигом центра)
+* Появление первых данных
+* Забор стилей из less
+* Перезагрузка стилей по кнопке
+* Всплываха при наведении на круг
+* Ловля mousedown\mouseup на круге
+
+* Биндинг на ангуляр
+* Биндинг на jquery
+* Собранная версия
+* Демка

@@ -12,14 +12,17 @@ export class Manager extends Iterable
 	add(data)
 	{
 		let params = {};
-		let type = null;
+		let type = 'circle'; // by default
 		if(Util.isArray(data))
 		{
 			params = {x: data[0], y: data[1]};
-			type = data[2];
+			if(data[2])
+			{
+				type = data[2];
+			}
 		}
 
-		if(type !== null)
+		if(type)
 		{
 			if(type.toLowerCase() === 'circle')
 			{

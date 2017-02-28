@@ -21,6 +21,7 @@ export class Grid extends BaseClass
 			fit: 'fit', // also 'fit-x', 'fit-y'
 			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
 			unitSize: 10, // in pixels
+			minGridSpace: 30,
 		};
 	}
 
@@ -59,9 +60,9 @@ export class Grid extends BaseClass
 	{
 		this.canvas.clear();
 
-		this.renderGridBorder();
 		this.renderGridUnitLines();
 		this.renderGridAxis();
+		this.renderGridBorder();
 		this.renderData();
 	}
 
@@ -74,7 +75,60 @@ export class Grid extends BaseClass
 
 	renderGridUnitLines()
 	{
-		// todo
+		let center = this.center;
+		let rightX = this.rightX;
+		let leftX = this.leftX;
+		let topY = this.topY;
+		let bottomY = this.bottomY;
+
+		// vertical to right
+		this.renderGridLineSequence(
+			center.x + this.paddingLeft,
+			rightX,
+			true, true, topY, bottomY
+		);
+
+		// vertical to left
+		this.renderGridLineSequence(
+			center.x + this.paddingLeft,
+			leftX,
+			false, true, topY, bottomY
+		);
+
+		// horizontal to top
+		this.renderGridLineSequence(
+			this.height - center.y - this.paddingBottom,
+			topY,
+			false, false, leftX, rightX
+		);
+
+		// horizontal to bottom
+		this.renderGridLineSequence(
+			this.height - center.y - this.paddingBottom,
+			bottomY,
+			true, false, leftX, rightX
+		);
+	}
+
+	renderGridLineSequence(start, end, way, hWay, hWayStart, hWayEnd)
+	{
+		let step = this.option('unitSize');
+		let dStep = way ? step : -step;
+		let minRange = this.option('minGridSpace');
+		let range = 0;
+
+		for(let offset = start; (way ? offset <= end : offset >= end); offset += dStep, range += step)
+		{
+			if(range > minRange)
+			{
+				this.canvas.line(
+					hWay ? {x: offset, y: hWayStart} : {x: hWayStart, y: offset},
+					hWay ? {x: offset, y: hWayEnd} : {x: hWayEnd, y: offset},
+					{color: 'lightgray'}
+				);
+				range = 0;
+			}
+		}
 	}
 
 	renderGridAxis()
@@ -138,14 +192,18 @@ export class Grid extends BaseClass
 	}
 
 	/**
-	 *
-	 * @param point in canvas-coordinates
+	 * Set center pixel coordinates WITHOUT paddings
+	 * @param {x: number, y: number} point
 	 */
 	set center(point)
 	{
 		this.vars.center = point;
 	}
 
+	/**
+	 * Get center pixel coordinates WITHOUT paddings
+	 * @returns {x: number, y: number}
+	 */
 	get center()
 	{
 		return this.vars.center || {x: 0, y: this.heightPadded + this.paddingTop};
@@ -171,34 +229,54 @@ export class Grid extends BaseClass
 		return this.canvas.width - this.paddingLeft - this.paddingRight;
 	}
 
+	get topY()
+	{
+		return this.paddingTop;
+	}
+
+	get bottomY()
+	{
+		return this.paddingTop + this.heightPadded;
+	}
+
+	get rightX()
+	{
+		return this.width - this.paddingRight;
+	}
+
+	get leftX()
+	{
+		return this.paddingLeft;
+	}
+
 	get topLeft()
 	{
-		return {x: this.paddingLeft, y: this.paddingTop};
+		return {x: this.paddingLeft, y: this.topY};
 	}
 
 	get topRight()
 	{
-		return {x: this.paddingLeft + this.widthPadded, y: this.paddingTop};
+		return {x: this.paddingLeft + this.widthPadded, y: this.topY};
 	}
 
 	get bottomLeft()
 	{
-		return {x: this.paddingLeft, y: this.paddingTop + this.heightPadded};
+		return {x: this.paddingLeft, y: this.bottomY};
 	}
 
 	get bottomRight()
 	{
-		return {x: this.paddingLeft + this.widthPadded, y: this.paddingTop + this.heightPadded};
+		return {x: this.paddingLeft + this.widthPadded, y: this.bottomY};
 	}
 
 	get centerHeightLeft()
 	{
-		return {x: this.paddingLeft, y: this.paddingBottom + this.heightPadded - this.center.y};
+		return {x: this.paddingLeft, y: this.height - this.paddingBottom - this.center.y};
 	}
 
 	get centerHeightRight()
 	{
-		return {x: this.paddingLeft + this.widthPadded, y: this.paddingBottom + this.heightPadded - this.center.y};
+		return {x: this.paddingLeft + this.widthPadded, y: this.height - this.paddingBottom - this.center.y};
 	}
 
 	get centerWidthTop()

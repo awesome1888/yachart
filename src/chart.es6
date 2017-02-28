@@ -20,7 +20,8 @@ export class Chart extends DOMController
 			scope: null,
 			fit: 'fit', // also 'fit-x', 'fit-y'
 			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
-			unitSize: 10, // in pixels
+			unitSize: 2, // in pixels
+			minGridSpace: 30,
 			data: [],
 		};
 	}
@@ -45,10 +46,10 @@ export class Chart extends DOMController
 	 */
 	updateStyle()
 	{
-		var grid = this.grid;
+		let grid = this.grid;
 
 		grid.paddingTopInstant = 10;
-		grid.paddingBottomInstant = 10;
+		grid.paddingBottomInstant = 50;
 		grid.paddingLeftInstant = 50;
 		grid.paddingRightInstant = 10;
 	}
@@ -72,8 +73,9 @@ export class Chart extends DOMController
 				unitSize: this.option('unitSize'),
 				fit: this.option('fit'),
 				align: this.option('align'),
+				minGridSpace: this.option('minGridSpace')
 			});
-			//grid.center({x: 50, y: 50});
+			//grid.center = {x: 10, y: 10};
 
 			this.vars.grid = grid;
 		}

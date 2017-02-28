@@ -19,13 +19,13 @@ export class Circle extends Point
 		grid.canvas.circle(
 			location,
 			radius,
-			{color: 'red', thickness: 3}
+			{color: '#c9302c', thickness: 2}
 		);
 	}
 
 	get radius()
 	{
-		return this.vars.radius || 10;
+		return this.vars.radius || 5;
 	}
 
 	set radius(value)

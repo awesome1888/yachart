@@ -19,6 +19,49 @@
                 <canvas width="500" height="500">
                 </canvas>
             </div>
+            <div class="yach-block-panel">
+                <div>
+                    <div class="yach-block-panel-orient">Top-Right</div>
+                    <div class="btn btn-sm btn-default">A</div>
+                    <div class="btn btn-sm btn-info">B</div>
+                    <div class="btn btn-sm btn-danger">C</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-blue-one yach-grap-container-inner">
+                <canvas class="js-chart-canvas" width="300" height="300">
+                </canvas>
+            </div>
+            <div class="yach-block-panel">
+                <div>
+                    <div class="yach-block-panel-orient">Fit-x</div>
+                    <div class="btn btn-sm btn-default">A</div>
+                    <div class="btn btn-sm btn-info">B</div>
+                    <div class="btn btn-sm btn-danger">C</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-green-one yach-grap-container-inner">
+                <canvas class="js-chart-canvas" width="300" height="300">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-yellow-one yach-grap-container-inner">
+                <canvas class="js-chart-canvas" width="300" height="300">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="chart-red-one" class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-grid-container yach-grap-container-inner">
+                <canvas width="500" height="500">
+                </canvas>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-6 yach-grap-container">
             <div class="js-chart-blue-one yach-grap-container-inner">
@@ -39,19 +82,22 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <script>
 
     var r = require(['/dest/chart.js'], function(ChartModule){
 
+    	var data = [];
+    	for(var k = 0; k < 200; k = k + 20)
+        {
+            data.push([k, 3 * Math.sqrt(k)]);
+        }
+
 	    var chart = new ChartModule.Chart({
 		    scope: document.getElementById('chart-red-one'),
-		    data: [
-			    [7, 7, 'Circle'],
-			    [12, 12, 'Circle'],
-			    [25, 12, 'Circle']
-		    ]
+		    data: data
 	    });
     });
 

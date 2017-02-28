@@ -20,6 +20,16 @@ export class BaseClass
 		}
 	}
 
+	bindEvent(name, cb)
+	{
+		Util.bindEvent(this, name, cb);
+	}
+
+	fireEvent(name)
+	{
+		Util.fireEvent(this, name);
+	}
+
 	get defaultOptions()
 	{
 		return {};

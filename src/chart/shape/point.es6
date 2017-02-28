@@ -1,4 +1,5 @@
 import {BaseClass} from '/src/util/baseclass.es6';
+import '/src/util.js';
 
 export class Point extends BaseClass
 {
@@ -13,6 +14,22 @@ export class Point extends BaseClass
 	render(grid)
 	{
 		throw new Error();
+	}
+
+	appear()
+	{
+		let p = new Util.Promise();
+		p.resolve();
+
+		return p;
+	}
+
+	disappear()
+	{
+		let p = new Util.Promise();
+		p.resolve();
+
+		return p;
 	}
 
 	get location()
