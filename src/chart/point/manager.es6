@@ -11,11 +11,12 @@ export class Manager extends Iterable
 
 	add(data)
 	{
-		let params = {};
+		let params = {grid: data.grid};
 		let type = 'circle'; // by default
 		if(Util.isArray(data))
 		{
-			params = {x: data[0], y: data[1]};
+			params.x = data[0];
+			params.y = data[1];
 			if(data[2])
 			{
 				type = data[2];

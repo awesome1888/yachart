@@ -29,10 +29,20 @@ export class Iterable extends BaseClass
 	each(cb)
 	{
 		let key = null;
+		let value = null;
+		let prevValue = null;
+		let nextValue = null;
 		for(let k = 0; k < this.vars.order.length; k++)
 		{
 			key = this.vars.order[k];
-			if(cb.apply(this, [this.vars.values[key], key, k]) === true)
+			value = this.vars.values[key];
+			prevValue = k === 0 ? null : this.vars.values[this.vars.order[k - 1]];
+			nextValue = k < this.vars.order.length - 1 ? this.vars.values[this.vars.order[k + 1]] : null;
+			if(cb.apply(this, [value, key, {
+				left: prevValue,
+				right: nextValue,
+				iteration: k
+			}]) === true)
 			{
 				break;
 			}

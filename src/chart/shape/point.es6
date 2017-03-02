@@ -9,11 +9,23 @@ export class Point extends BaseClass
 
 		this.x = options.x;
 		this.y = options.y;
+
+		this.grid = options.grid || null;
 	}
 
-	render(grid)
+	render(parameters)
 	{
 		throw new Error();
+	}
+
+	get coordinates()
+	{
+		return this.grid.data2Pixel(this);
+	}
+
+	get coordinatesCenter00()
+	{
+		return this.grid.data2Pixel(this, {center: {x: 0, y: 0}});
 	}
 
 	appear()
@@ -30,6 +42,18 @@ export class Point extends BaseClass
 		p.resolve();
 
 		return p;
+	}
+
+	get bounds()
+	{
+		let coordinates = this.coordinates;
+		return [coordinates, coordinates];
+	}
+
+	get boundsCenter00()
+	{
+		let coordinates = this.coordinatesCenter00;
+		return [coordinates, coordinates];
 	}
 
 	get location()

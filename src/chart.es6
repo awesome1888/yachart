@@ -8,6 +8,7 @@ export class Chart extends DOMController
 		super(options);
 
 		this.grid.addPoints(this.option('data'));
+
 		this.updateStyle();
 		this.render(true);
 
@@ -18,7 +19,7 @@ export class Chart extends DOMController
 	{
 		return {
 			scope: null,
-			fit: 'fit', // also 'fit-x', 'fit-y'
+			fit: 'none', // also 'fit', 'fit-x', 'fit-y'
 			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
 			unitSize: 2, // in pixels
 			minGridSpace: 30,
@@ -56,7 +57,7 @@ export class Chart extends DOMController
 
 	get gridContainer()
 	{
-		return this.control('grid-container') || this.scope();
+		return this.control('grid-container') || this.scope;
 	}
 
 	get defaultCode()

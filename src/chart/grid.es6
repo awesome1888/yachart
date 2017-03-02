@@ -12,17 +12,23 @@ export class Grid extends BaseClass
 	{
 		super(options);
 
-		this.center = {x: 50, y: 50}; // tmp
+		this.clearCaches();
 	}
 
 	get defaultOptions()
 	{
 		return {
-			fit: 'fit', // also 'fit-x', 'fit-y'
+			fit: 'none', // also 'fit', 'fit-x', 'fit-y'
 			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
 			unitSize: 10, // in pixels
 			minGridSpace: 30,
 		};
+	}
+
+	clearCaches()
+	{
+		this.center = null;
+		this.unitSize = null;
 	}
 
 	addPoints(data)
@@ -38,6 +44,9 @@ export class Grid extends BaseClass
 
 	addPoint(data)
 	{
+		this.clearCaches();
+
+		data.grid = this;
 		this.points.add(data);
 	}
 
@@ -45,6 +54,7 @@ export class Grid extends BaseClass
 	{
 		if(ifResized)
 		{
+			this.clearCaches();
 			if(this.canvas.fit(this.option('container')))
 			{
 				this.renderLayers();
@@ -112,7 +122,7 @@ export class Grid extends BaseClass
 
 	renderGridLineSequence(start, end, way, hWay, hWayStart, hWayEnd)
 	{
-		let step = this.option('unitSize');
+		let step = this.unitSize;
 		let dStep = way ? step : -step;
 		let minRange = this.option('minGridSpace');
 		let range = 0;
@@ -139,8 +149,8 @@ export class Grid extends BaseClass
 
 	renderData()
 	{
-		this.points.each(function(item){
-			item.render(this);
+		this.points.each(function(item, key, extra){
+			item.render(extra);
 		}.bind(this));
 	}
 
@@ -160,17 +170,15 @@ export class Grid extends BaseClass
 	 * @param parameters
 	 * @returns {{x: number, y: number}}
 	 */
-	data2Grid(point, parameters = {})
+	data2Pixel(point, parameters = {})
 	{
-		let unit = this.options.unitSize;
-		let center = this.vars.center;
+		let unit = parameters.unitSize || this.unitSize;
+		let center = parameters.center || this.center;
 
-		let p = {
+		return {
 			x: center.x + this.paddingLeft + point.x * unit,
 			y: (this.height - this.paddingBottom - center.y) - point.y * unit
 		};
-
-		return p;
 	}
 
 	/**
@@ -179,21 +187,19 @@ export class Grid extends BaseClass
 	 * @param parameters
 	 * @returns {{x: number, y: number}}
 	 */
-	grid2Data(point, parameters = {})
+	pixel2Data(point, parameters = {})
 	{
-		let unit = this.options.unitSize;
+		let unit = this.unitSize;
 
-		let p = {
+		return {
 			x: Math.floor(point.x / unit),
 			y: Math.floor(point.y / unit)
 		};
-
-		return p;
 	}
 
 	/**
 	 * Set center pixel coordinates WITHOUT paddings
-	 * @param {x: number, y: number} point
+	 * @param {x: number, y: number}|null point
 	 */
 	set center(point)
 	{
@@ -202,11 +208,124 @@ export class Grid extends BaseClass
 
 	/**
 	 * Get center pixel coordinates WITHOUT paddings
-	 * @returns {x: number, y: number}
+	 * @returns {x: number, y: number}|null
 	 */
 	get center()
 	{
-		return this.vars.center || {x: 0, y: this.heightPadded + this.paddingTop};
+		if(this.vars.center !== null)
+		{
+			return this.vars.center;
+		}
+
+		let couple = this.defineCenterAndUnitSize();
+		this.vars.center = couple.center;
+
+		return this.vars.center;
+	}
+
+	get defaultCenter()
+	{
+		return {x: 0, y: 0};
+	}
+
+	set unitSize(size)
+	{
+		this.vars.unitSize = size;
+	}
+
+	get unitSize()
+	{
+		if(this.vars.unitSize !== null)
+		{
+			return this.vars.unitSize;
+		}
+
+		let couple = this.defineCenterAndUnitSize();
+		this.vars.unitSize = couple.unitSize;
+
+		return this.vars.unitSize;
+	}
+
+	get defaultUnitSize()
+	{
+		return this.option('unitSize') || 10;
+	}
+
+	defineCenterAndUnitSize()
+	{
+		let center = null;
+		let unitSize = null;
+		let fit = this.option('fit');
+
+		let defCenter = this.defaultCenter;
+
+		let first = this.points.first();
+		let last = this.points.last();
+
+		if(fit == 'none')
+		{
+			unitSize = this.defaultUnitSize;
+
+			if(first && last)
+			{
+				// no fit, then use align
+				let align = this.option('align');
+
+				// we need to locate center
+				center = defCenter; // tmp
+			}
+			else
+			{
+				// just set the default and leave this
+				center = defCenter;
+			}
+		}
+		else if(fit == 'fit-x')
+		{
+			if(first && last)
+			{
+				// get coordinates as it would be with the default center and unit size
+				let fXY = this.data2Pixel(first, {center: this.defaultCenter, unitSize: this.defaultUnitSize});
+				let lXY = this.data2Pixel(last, {center: this.defaultCenter, unitSize: this.defaultUnitSize});
+
+				let dXY = lXY.x - fXY.x;
+				let d = last.x - first.x;
+				let width = this.widthPadded;
+
+				// data is smaller than grid, left values as-is
+				if(dXY <= width)
+				{
+					unitSize = this.defaultUnitSize;
+					center = defCenter;
+				}
+				else
+				{
+					// we need to relocate center and also adjust unit size...
+					unitSize = (width / dXY) * this.defaultUnitSize;
+
+					let f1XY = this.data2Pixel(first, {center: this.defaultCenter, unitSize: unitSize});
+
+					console.dir(fXY);
+					console.dir(f1XY);
+
+					center = defCenter;
+					//center = {x: Math.floor(defCenter.x - f1XY.x), y: Math.floor(f1XY.y - defCenter.y)};
+				}
+			}
+			else
+			{
+				// just set the default and leave this
+				center = defCenter;
+			}
+		}
+		else
+		{
+			// just set the default and leave this
+			unitSize = this.defaultUnitSize;
+			center = defCenter;
+		}
+
+		return {center: center, unitSize: unitSize}
 	}
 
 	get height()

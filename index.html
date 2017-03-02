@@ -14,7 +14,7 @@
 
 <div class="container yach-work-area" ng-controller="HomeController">
     <div class="row">
-        <div id="chart-red-one" class="col-xs-12 col-sm-6 yach-grap-container">
+        <div id="chart-a" class="col-xs-12 col-sm-6 yach-grap-container">
             <div class="js-chart-grid-container yach-grap-container-inner">
                 <canvas width="500" height="500">
                 </canvas>
@@ -28,9 +28,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-blue-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
+        <div id="chart-b" class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-grid-container yach-grap-container-inner">
+                <canvas width="500" height="500">
                 </canvas>
             </div>
             <div class="yach-block-panel">
@@ -42,43 +42,32 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-green-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
-                </canvas>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-yellow-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
-                </canvas>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div id="chart-red-one" class="col-xs-12 col-sm-6 yach-grap-container">
+        <div id="chart-c" class="col-xs-12 col-sm-6 yach-grap-container">
             <div class="js-chart-grid-container yach-grap-container-inner">
                 <canvas width="500" height="500">
                 </canvas>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-blue-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
-                </canvas>
+            <div class="yach-block-panel">
+                <div>
+                    <div class="yach-block-panel-orient">Top-Right (wider)</div>
+                    <div class="btn btn-sm btn-default">A</div>
+                    <div class="btn btn-sm btn-info">B</div>
+                    <div class="btn btn-sm btn-danger">C</div>
+                </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-green-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
+        <div id="chart-d" class="col-xs-12 col-sm-6 yach-grap-container">
+            <div class="js-chart-grid-container yach-grap-container-inner">
+                <canvas width="500" height="500">
                 </canvas>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 yach-grap-container">
-            <div class="js-chart-yellow-one yach-grap-container-inner">
-                <canvas class="js-chart-canvas" width="300" height="300">
-                </canvas>
+            <div class="yach-block-panel">
+                <div>
+                    <div class="yach-block-panel-orient">Fit-x (wider)</div>
+                    <div class="btn btn-sm btn-default">A</div>
+                    <div class="btn btn-sm btn-info">B</div>
+                    <div class="btn btn-sm btn-danger">C</div>
+                </div>
             </div>
         </div>
     </div>
@@ -87,21 +76,50 @@
 
 <script>
 
-    var r = require(['/dest/chart.js'], function(ChartModule){
+    require(['/dest/chart.js'], function(ChartModule){
 
-    	var data = [];
+    	var data1 = [];
+	    var data2 = [];
     	for(var k = 0; k < 200; k = k + 20)
         {
-            data.push([k, 3 * Math.sqrt(k)]);
+            data1.push([k, 3 * Math.sqrt(k)]);
+	        data2.push([k, 4 * Math.sqrt(k)]);
         }
 
-	    var chart = new ChartModule.Chart({
-		    scope: document.getElementById('chart-red-one'),
-		    data: data
+	    var chartA = new ChartModule.Chart({
+		    scope: document.getElementById('chart-a'),
+		    data: data1,
+            fit: 'none'
 	    });
-    });
 
-    console.dir('ready');
+	    var chartB = new ChartModule.Chart({
+		    scope: document.getElementById('chart-b'),
+		    data: data2,
+            fit: 'fit-x'
+	    });
+
+	    var data3 = [];
+	    var data4 = [];
+	    for(var k = -100; k < 400; k = k + 20)
+	    {
+		    data3.push([k, 15 * Math.cbrt(k)]);
+		    data4.push([k, 10 * Math.cbrt(k)]);
+	    }
+
+	    var chartC = new ChartModule.Chart({
+		    scope: document.getElementById('chart-c'),
+		    data: data3,
+		    fit: 'none'
+	    });
+
+	    var chartD = new ChartModule.Chart({
+		    scope: document.getElementById('chart-d'),
+		    data: data4,
+		    fit: 'fit-x'
+	    });
+
+	    console.dir('ready');
+    });
 
 </script>
 
