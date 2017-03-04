@@ -36,19 +36,24 @@ export class Manager extends Iterable
 
 	/**
 	 *
-	 * @returns {{square: [*,*], size: {w: number, h: number}}}
+	 * @param parameters
+	 * @returns {{square: [*,*,*,*], size: {w: number, h: number}}}
 	 */
-	get dataBounds()
+	getDataBounds(parameters = {})
 	{
-		let bounds = {square: [{x: 0, y: 0}, {x: 0, y: 0}], size: {w: 0, h: 0}};
+		let bounds = {square: [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}], size: {w: 0, h: 0}};
 
 		if(this.count)
 		{
-			let firstPx = this.first.pixelRelativeMeasuresDefault;
-			let lastPx = this.last.pixelRelativeMeasuresDefault;
+			let firstPx = this.first.getPixelRelative(parameters);
+			let lastPx = this.last.getPixelRelative(parameters);
 
 			bounds.square[0].x = firstPx.x;
+			bounds.square[3].x = firstPx.x;
+
 			bounds.square[1].x = lastPx.x;
+			bounds.square[2].x = lastPx.x;
+
 			bounds.size.w = lastPx.x - firstPx.x;
 
 			let minY = null;
@@ -57,7 +62,7 @@ export class Manager extends Iterable
 
 			this.each(function(item){
 
-				itemPx = item.pixelRelativeMeasuresDefault;
+				itemPx = item.getPixelRelative(parameters);
 
 				if(minY === null || minY > itemPx.y)
 				{
@@ -69,8 +74,12 @@ export class Manager extends Iterable
 				}
 			});
 
-			bounds.square[0].y = minY;
+			bounds.square[0].y = maxY;
 			bounds.square[1].y = maxY;
+
+			bounds.square[2].y = minY;
+			bounds.square[3].y = minY;
+
 			bounds.size.h = maxY - minY;
 		}
 

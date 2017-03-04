@@ -18,9 +18,19 @@ export class Point extends BaseClass
 		throw new Error();
 	}
 
+	getPixel(parameters)
+	{
+		return this.grid.data2Pixel(this, parameters);
+	}
+
 	get pixel()
 	{
 		return this.grid.data2Pixel(this);
+	}
+
+	getPixelRelative(parameters)
+	{
+		return this.grid.data2PixelRelative(this, parameters);
 	}
 
 	get pixelRelative()

@@ -78,9 +78,9 @@ export class Grid extends BaseClass
 
 		this.renderGridUnitLines();
 		this.renderGridAxis();
-		this.renderGridBorder();
 
 		this.renderData();
+		this.renderGridBorder();
 	}
 
 	renderGridBorder()
@@ -335,11 +335,8 @@ export class Grid extends BaseClass
 
 	defineCenterAndUnitSize()
 	{
-		let center = null;
-		let unitSize = null;
+		let pair = {center: this.defaultCenter, unitSize: this.defaultUnitSize};
 		let fit = this.option('fit');
-
-		let defCenter = this.defaultCenter;
 
 		let first = this.points.first;
 		let last = this.points.last;
@@ -347,33 +344,35 @@ export class Grid extends BaseClass
 		if(fit == 'none')
 		{
 			// no fit, then use align
-			unitSize = this.defaultUnitSize;
-
-			if(first && last)
+			if(first && last && false)
 			{
 				// we need to locate center
 				let align = this.option('align');
-				let bounds = this.points.dataBounds;
+				let bounds = this.points.getDataBounds(pair);
 
-				center = defCenter;
+				// align height, if needed
+				if(bounds.size.h > this.heightPadded)
+				{
+					let lastXY = this.points.last.getPixelRelative(pair);
+					let offsetY = bounds.size.h - lastXY.y;
 
+
+				}
+
+				// align width, if needed
 				if(bounds.size.w > this.widthPadded)
 				{
-					if(align === 'top-right')
+					// move center to ...
+					if(align === 'right')
 					{
-						let delta = this.data2PixelRelative(last, {unitSize: unitSize, center: center}).x - this.widthPadded;
-						center.x = center.x - delta;
+						// ... put together top-right corner of bounds and top-right corner of grid
+						pair.center = {x: pair.center.x - bounds.square[1].x, y: pair.center.y - bounds.square[1].y};
 					}
 					else
 					{
 						// todo
 					}
 				}
-			}
-			else
-			{
-				// just set the default and leave this
-				center = defCenter;
 			}
 		}
 		else if(fit == 'fit-x')
@@ -383,7 +382,7 @@ export class Grid extends BaseClass
 				let width = this.widthPadded;
 				let height = this.heightPadded;
 
-				let bounds = this.points.dataBounds;
+				let bounds = this.points.getDataBounds(pair);
 
 				let k = 1;
 				if(width <= bounds.size.w)
@@ -397,33 +396,18 @@ export class Grid extends BaseClass
 					k = k * (height / newHeight);
 				}
 
-				// data is smaller than grid, left unit size as is
-				if(k === 1)
+				if(k !== 1)
 				{
-					unitSize = this.defaultUnitSize;
-				}
-				else
-				{
-					unitSize = k * this.defaultUnitSize;
+					pair.unitSize = k * this.defaultUnitSize;
+					bounds = this.points.getDataBounds(pair); // re-obtain bounds for new unitSize
 				}
 
-				let firstPixel = this.data2PixelRelative(this.points.first, {unitSize: unitSize});
-				center = {x: Math.round(defCenter.x - firstPixel.x), y: Math.round(defCenter.y - firstPixel.y)};
+				// move center to match bounds
+				pair.center = {x: pair.center.x - bounds.square[3].x, y: pair.center.y - bounds.square[3].y};
 			}
-			else
-			{
-				// just set the default and leave this
-				center = defCenter;
-			}
-		}
-		else
-		{
-			// just set the default and leave this
-			unitSize = this.defaultUnitSize;
-			center = defCenter;
 		}
 
-		return {center: center, unitSize: unitSize}
+		return pair;
 	}
 
 	get height()

@@ -81,7 +81,7 @@
     	var chartA = 0;
     	var chartB = 0;
     	var chartC = 1;
-    	var chartD = 1;
+    	var chartD = 0;
 
     	var data1 = [];
 	    var data2 = [];
@@ -131,13 +131,15 @@
 		    });
 	    }
 
+	    data3 = [[-100, 50], [0, 0], [100, 50]];
+
 	    if(chartC)
         {
 	        var chartC = new ChartModule.Chart({
 		        scope: document.getElementById('chart-c'),
 		        data: data3,
 		        fit: 'none',
-                align: 'top-right'
+                align: 'right'
 	        });
         }
 
