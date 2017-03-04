@@ -138,16 +138,30 @@ export class Canvas
 		Util.fireEvent(this, 'canvasClick');
 	}
 
+	clearCaches()
+	{
+		this._height = null;
+		this._width = null;
+	}
+
 	get height()
 	{
-		// todo: cache here
-		return Util.pos(this.canvas).height;
+		if(this._height === null)
+		{
+			this._height = Util.pos(this.canvas).height;
+		}
+
+		return this._height;
 	}
 
 	get width()
 	{
-		// todo: cache here
-		return Util.pos(this.canvas).width;
+		if(this._width === null)
+		{
+			this._width = Util.pos(this.canvas).width;
+		}
+
+		return this._width;
 	}
 
 	get context()

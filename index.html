@@ -81,15 +81,37 @@
     	var chartA = 0;
     	var chartB = 0;
     	var chartC = 1;
-    	var chartD = 0;
+    	var chartD = 1;
 
     	var data1 = [];
 	    var data2 = [];
-    	for(var k = 0; k < 200; k = k + 20)
+	    var data3 = [];
+	    var data4 = [];
+
+	    var way = 0;
+
+	    for(var k = 0; k < 200; k = k + 20)
         {
             data1.push([k, 4 * Math.sqrt(k)]);
 	        data2.push([k, 4 * Math.sqrt(k)]);
         }
+
+	    if(way)
+	    {
+		    for(var k = -100; k < 400; k = k + 20)
+		    {
+			    data3.push([k, 10 * Math.cbrt(k)]);
+			    data4.push([k, 10 * Math.cbrt(k)]);
+		    }
+	    }
+	    else
+	    {
+		    for(var k = -50; k <= 50; k++)
+		    {
+			    data3.push([k, 0.6*k*k]);
+			    data4.push([k, 0.6*k*k]);
+		    }
+	    }
 
         if(chartA)
         {
@@ -107,14 +129,6 @@
 			    data: data2,
 			    fit: 'fit-x'
 		    });
-	    }
-
-	    var data3 = [];
-	    var data4 = [];
-	    for(var k = -100; k < 400; k = k + 20)
-	    {
-		    data3.push([k, 10 * Math.cbrt(k)]);
-		    data4.push([k, 10 * Math.cbrt(k)]);
 	    }
 
 	    if(chartC)

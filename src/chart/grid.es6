@@ -31,6 +31,11 @@ export class Grid extends BaseClass
 		this.unitSize = null;
 	}
 
+	clearCanvasCaches()
+	{
+		this.canvas.clearCaches();
+	}
+
 	addPoints(data)
 	{
 		for(let item in data)
@@ -54,6 +59,7 @@ export class Grid extends BaseClass
 	{
 		if(ifResized)
 		{
+			this.clearCanvasCaches();
 			this.clearCaches();
 			if(this.canvas.fit(this.option('container')))
 			{
@@ -73,6 +79,7 @@ export class Grid extends BaseClass
 		this.renderGridUnitLines();
 		this.renderGridAxis();
 		this.renderGridBorder();
+
 		this.renderData();
 	}
 
@@ -127,22 +134,31 @@ export class Grid extends BaseClass
 		let minRange = this.option('minGridSpace');
 		let range = 0;
 
+		let paddingLeft = this.paddingLeft;
+		let paddingTop = this.paddingTop;
+		let width = this.widthPadded;
+		let height = this.heightPadded;
+
+		//let count = 0;
+
 		for(let offset = start; (way ? offset <= end : offset >= end); offset += dStep, range += step)
 		{
 			if(way) // vertical
 			{
-				if(offset < this.paddingLeft || offset > this.paddingLeft + this.widthPadded)
+				if(offset < paddingLeft || offset > paddingLeft + width)
 				{
 					continue;
 				}
 			}
 			else
 			{
-				if(offset < this.paddingTop || offset > this.paddingTop + this.heightPadded)
+				if(offset < paddingTop || offset > paddingTop + height)
 				{
 					continue;
 				}
 			}
+
+			//count++;
 
 			if(range > minRange)
 			{
@@ -154,12 +170,34 @@ export class Grid extends BaseClass
 				range = 0;
 			}
 		}
+
+		//console.dir(count);
 	}
 
 	renderGridAxis()
 	{
-		this.canvas.line(this.centerHeightLeft, this.centerHeightRight);
-		this.canvas.line(this.centerWidthTop, this.centerWidthBottom);
+		let paddingLeft = this.paddingLeft;
+		let paddingTop = this.paddingTop;
+		let width = this.widthPadded;
+		let height = this.heightPadded;
+
+		let chl = this.centerHeightLeft;
+		let chr = this.centerHeightRight;
+
+		// horizontal
+		if(chl.x >= paddingLeft && chl.x <= paddingLeft + width)
+		{
+			this.canvas.line(chl, chr);
+		}
+
+		let cwt = this.centerWidthTop;
+		let cwb = this.centerWidthBottom;
+
+		// vertical
+		if(cwt.y >= paddingTop && cwt.y <= paddingTop + height)
+		{
+			this.canvas.line(cwt, cwb);
+		}
 	}
 
 	renderData()

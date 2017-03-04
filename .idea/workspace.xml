@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e165590c-2207-4c82-a80f-166448e7e6a0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/canvas.es6" afterPath="$PROJECT_DIR$/src/chart/canvas.es6" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/grid.es6" afterPath="$PROJECT_DIR$/src/chart/grid.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/point/manager.es6" afterPath="$PROJECT_DIR$/src/chart/point/manager.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/shape/circle.es6" afterPath="$PROJECT_DIR$/src/chart/shape/circle.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/shape/point.es6" afterPath="$PROJECT_DIR$/src/chart/shape/point.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/iterable.es6" afterPath="$PROJECT_DIR$/src/util/iterable.es6" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +28,8 @@
       <file leaf-file-name="chart.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="157">
+              <caret line="54" column="38" lean-forward="false" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -41,14 +37,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grid.es6" pinned="false" current-in-tab="true">
+      <file leaf-file-name="grid.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="140" column="91" lean-forward="false" selection-start-line="140" selection-start-column="91" selection-end-line="140" selection-end-column="91" />
+            <state relative-caret-position="303">
+              <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#90#140#0" expanded="true" />
+                <element signature="n#!!block;n#renderGridUnitLines#0;n#Grid#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -64,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="125" column="28" lean-forward="false" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
+            <state relative-caret-position="255">
+              <caret line="103" column="51" lean-forward="true" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -91,6 +88,19 @@
               <caret line="59" column="59" lean-forward="false" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="canvas.es6" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!block;n#constructor#0;n#Canvas#0" expanded="false" />
+                <element signature="n#!!block;n#clear#0;n#Canvas#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,8 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>},</find>
-      <find>: function</find>
       <find>var</find>
       <find>replace-ext</find>
       <find>bject-assign</find>
@@ -149,6 +157,8 @@
       <find>first()</find>
       <find>dataBounds</find>
       <find>count</find>
+      <find>renderGridUnitLines</find>
+      <find>clearCaches</find>
     </findStrings>
     <replaceStrings>
       <replace>(</replace>
@@ -201,7 +211,6 @@
         <option value="$PROJECT_DIR$/src/util/error.es6" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/src/chart/point.es6" />
-        <option value="$PROJECT_DIR$/src/chart/canvas.es6" />
         <option value="$PROJECT_DIR$/src/chart/point/circle.es6" />
         <option value="$PROJECT_DIR$/src/chart/shape/line.es6" />
         <option value="$PROJECT_DIR$/TODO.md" />
@@ -214,8 +223,9 @@
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/src/chart/shape/circle.es6" />
         <option value="$PROJECT_DIR$/src/chart/shape/point.es6" />
-        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/chart/canvas.es6" />
         <option value="$PROJECT_DIR$/src/chart/grid.es6" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -482,12 +492,12 @@
       <workItem from="1488483054881" duration="12991000" />
       <workItem from="1488521289055" duration="927000" />
       <workItem from="1488522275473" duration="4000" />
-      <workItem from="1488623647673" duration="16957000" />
+      <workItem from="1488623647673" duration="20393000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141788000" />
+    <option name="totallyTimeSpent" value="145224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -702,17 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="42" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#Canvas#0" expanded="false" />
-            <element signature="n#!!block;n#clear#0;n#Canvas#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/oldchart/chart.es6">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -755,6 +754,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/chart/point/manager.es6">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -767,38 +774,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chart.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state relative-caret-position="157">
+          <caret line="54" column="38" lean-forward="false" selection-start-line="54" selection-start-column="38" selection-end-line="54" selection-end-column="38" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+    <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="125" column="28" lean-forward="false" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="474">
+          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#Canvas#0" expanded="false" />
+            <element signature="n#!!block;n#clear#0;n#Canvas#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="140" column="91" lean-forward="false" selection-start-line="140" selection-start-column="91" selection-end-line="140" selection-end-column="91" />
+        <state relative-caret-position="303">
+          <caret line="182" column="0" lean-forward="false" selection-start-line="182" selection-start-column="0" selection-end-line="182" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#90#140#0" expanded="true" />
+            <element signature="n#!!block;n#renderGridUnitLines#0;n#Grid#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="103" column="51" lean-forward="true" selection-start-line="103" selection-start-column="51" selection-end-line="103" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
