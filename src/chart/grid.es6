@@ -95,32 +95,32 @@ export class Grid extends BaseClass
 		this.renderGridLineSequence(
 			center.x + this.paddingLeft,
 			rightX,
-			true, true, topY, bottomY
+			true, true, topY, bottomY, true
 		);
 
 		// vertical to left
 		this.renderGridLineSequence(
 			center.x + this.paddingLeft,
 			leftX,
-			false, true, topY, bottomY
+			false, true, topY, bottomY, true
 		);
 
 		// horizontal to top
 		this.renderGridLineSequence(
 			this.height - center.y - this.paddingBottom,
 			topY,
-			false, false, leftX, rightX
+			false, false, leftX, rightX, false
 		);
 
 		// horizontal to bottom
 		this.renderGridLineSequence(
 			this.height - center.y - this.paddingBottom,
 			bottomY,
-			true, false, leftX, rightX
+			true, false, leftX, rightX, false
 		);
 	}
 
-	renderGridLineSequence(start, end, way, hWay, hWayStart, hWayEnd)
+	renderGridLineSequence(start, end, way, hWay, hWayStart, hWayEnd, wayOrient)
 	{
 		let step = this.unitSize;
 		let dStep = way ? step : -step;
@@ -129,6 +129,21 @@ export class Grid extends BaseClass
 
 		for(let offset = start; (way ? offset <= end : offset >= end); offset += dStep, range += step)
 		{
+			if(way) // vertical
+			{
+				if(offset < this.paddingLeft || offset > this.paddingLeft + this.widthPadded)
+				{
+					continue;
+				}
+			}
+			else
+			{
+				if(offset < this.paddingTop || offset > this.paddingTop + this.heightPadded)
+				{
+					continue;
+				}
+			}
+
 			if(range > minRange)
 			{
 				this.canvas.line(
@@ -165,7 +180,7 @@ export class Grid extends BaseClass
 	}
 
 	/**
-	 * Map data values into grid pixels
+	 * Map data values into canvas absolute pixels
 	 * @param point
 	 * @param parameters
 	 * @returns {{x: number, y: number}}
@@ -181,8 +196,17 @@ export class Grid extends BaseClass
 		};
 	}
 
+	data2PixelRelative(point, parameters = {})
+	{
+		let unit = parameters.unitSize || this.unitSize;
+		return {
+			x: point.x * unit,
+			y: point.y * unit
+		};
+	}
+
 	/**
-	 * Map grid pixels into data values
+	 * Map canvas absolute pixels into data values
 	 * @param point
 	 * @param parameters
 	 * @returns {{x: number, y: number}}
@@ -195,6 +219,26 @@ export class Grid extends BaseClass
 			x: Math.floor(point.x / unit),
 			y: Math.floor(point.y / unit)
 		};
+	}
+
+	/**
+	 * Maps pixels relative to the bottom left corner of the grid (including paddings) to canvas absolute pixels
+	 * @param point
+	 * @returns {{x: number, y: number}}
+	 */
+	relativePixelToPixel(point)
+	{
+		return {x: this.paddingLeft + point.x, y: this.paddingTop + this.heightPadded - point.y};
+	}
+
+	/**
+	 * Maps canvas absolute pixels to pixels relative to the bottom left corner of the grid (including paddings)
+	 * @param point
+	 * @returns {{x: number, y: number}}
+	 */
+	pixelToRelativePixel(point)
+	{
+		return {x: point.x - this.paddingLeft, y: (this.paddingTop + this.heightPadded) - point.y};
 	}
 
 	/**
@@ -259,20 +303,34 @@ export class Grid extends BaseClass
 
 		let defCenter = this.defaultCenter;
 
-		let first = this.points.first();
-		let last = this.points.last();
+		let first = this.points.first;
+		let last = this.points.last;
 
 		if(fit == 'none')
 		{
+			// no fit, then use align
 			unitSize = this.defaultUnitSize;
 
 			if(first && last)
 			{
-				// no fit, then use align
-				let align = this.option('align');
-
 				// we need to locate center
-				center = defCenter; // tmp
+				let align = this.option('align');
+				let bounds = this.points.dataBounds;
+
+				center = defCenter;
+
+				if(bounds.size.w > this.widthPadded)
+				{
+					if(align === 'top-right')
+					{
+						let delta = this.data2PixelRelative(last, {unitSize: unitSize, center: center}).x - this.widthPadded;
+						center.x = center.x - delta;
+					}
+					else
+					{
+						// todo
+					}
+				}
 			}
 			else
 			{
@@ -284,33 +342,35 @@ export class Grid extends BaseClass
 		{
 			if(first && last)
 			{
-				// get coordinates as it would be with the default center and unit size
-				let fXY = this.data2Pixel(first, {center: this.defaultCenter, unitSize: this.defaultUnitSize});
-				let lXY = this.data2Pixel(last, {center: this.defaultCenter, unitSize: this.defaultUnitSize});
-
-				let dXY = lXY.x - fXY.x;
-				let d = last.x - first.x;
 				let width = this.widthPadded;
+				let height = this.heightPadded;
 
-				// data is smaller than grid, left values as-is
-				if(dXY <= width)
+				let bounds = this.points.dataBounds;
+
+				let k = 1;
+				if(width <= bounds.size.w)
+				{
+					k = width / bounds.size.w;
+				}
+
+				let newHeight = k * bounds.size.h;
+				if(height <= newHeight)
+				{
+					k = k * (height / newHeight);
+				}
+
+				// data is smaller than grid, left unit size as is
+				if(k === 1)
 				{
 					unitSize = this.defaultUnitSize;
-					center = defCenter;
 				}
 				else
 				{
-					// we need to relocate center and also adjust unit size...
-					unitSize = (width / dXY) * this.defaultUnitSize;
-
-					let f1XY = this.data2Pixel(first, {center: this.defaultCenter, unitSize: unitSize});
-
-					console.dir(fXY);
-					console.dir(f1XY);
-
-					center = defCenter;
-					//center = {x: Math.floor(defCenter.x - f1XY.x), y: Math.floor(f1XY.y - defCenter.y)};
+					unitSize = k * this.defaultUnitSize;
 				}
+
+				let firstPixel = this.data2PixelRelative(this.points.first, {unitSize: unitSize});
+				center = {x: Math.round(defCenter.x - firstPixel.x), y: Math.round(defCenter.y - firstPixel.y)};
 			}
 			else
 			{

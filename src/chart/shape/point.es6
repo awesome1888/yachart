@@ -18,14 +18,19 @@ export class Point extends BaseClass
 		throw new Error();
 	}
 
-	get coordinates()
+	get pixel()
 	{
 		return this.grid.data2Pixel(this);
 	}
 
-	get coordinatesCenter00()
+	get pixelRelative()
 	{
-		return this.grid.data2Pixel(this, {center: {x: 0, y: 0}});
+		return this.grid.data2PixelRelative(this);
+	}
+
+	get pixelRelativeMeasuresDefault()
+	{
+		return this.grid.data2PixelRelative(this, {unitSize: this.grid.defaultUnitSize});
 	}
 
 	appear()
@@ -44,17 +49,17 @@ export class Point extends BaseClass
 		return p;
 	}
 
-	get bounds()
-	{
-		let coordinates = this.coordinates;
-		return [coordinates, coordinates];
-	}
-
-	get boundsCenter00()
-	{
-		let coordinates = this.coordinatesCenter00;
-		return [coordinates, coordinates];
-	}
+	// get bounds()
+	// {
+	// 	let coordinates = this.coordinates;
+	// 	return [coordinates, coordinates];
+	// }
+	//
+	// get boundsCenter00()
+	// {
+	// 	let coordinates = this.coordinatesCenter00;
+	// 	return [coordinates, coordinates];
+	// }
 
 	get location()
 	{

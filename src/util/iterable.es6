@@ -21,13 +21,18 @@ export class Iterable extends BaseClass
 		this.vars.order.push(key);
 	}
 
-	count()
+	get count()
 	{
 		return this.vars.order.length;
 	}
 
 	each(cb)
 	{
+		if(!this.count)
+		{
+			return;
+		}
+
 		let key = null;
 		let value = null;
 		let prevValue = null;
@@ -51,7 +56,7 @@ export class Iterable extends BaseClass
 
 	nth(k)
 	{
-		if(k < 0 || k >= this.count())
+		if(k < 0 || k >= this.count)
 		{
 			return null;
 		}
@@ -59,13 +64,13 @@ export class Iterable extends BaseClass
 		return this.vars.values[this.vars.order[k]];
 	}
 
-	first()
+	get first()
 	{
 		return this.nth(0);
 	}
 
-	last()
+	get last()
 	{
-		return this.nth(this.count() - 1);
+		return this.nth(this.count - 1);
 	}
 }

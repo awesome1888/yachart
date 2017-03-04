@@ -33,4 +33,47 @@ export class Manager extends Iterable
 
 		// todo: throw an error?
 	}
+
+	/**
+	 *
+	 * @returns {{square: [*,*], size: {w: number, h: number}}}
+	 */
+	get dataBounds()
+	{
+		let bounds = {square: [{x: 0, y: 0}, {x: 0, y: 0}], size: {w: 0, h: 0}};
+
+		if(this.count)
+		{
+			let firstPx = this.first.pixelRelativeMeasuresDefault;
+			let lastPx = this.last.pixelRelativeMeasuresDefault;
+
+			bounds.square[0].x = firstPx.x;
+			bounds.square[1].x = lastPx.x;
+			bounds.size.w = lastPx.x - firstPx.x;
+
+			let minY = null;
+			let maxY = null;
+			let itemPx = null;
+
+			this.each(function(item){
+
+				itemPx = item.pixelRelativeMeasuresDefault;
+
+				if(minY === null || minY > itemPx.y)
+				{
+					minY = itemPx.y;
+				}
+				if(maxY === null || maxY < itemPx.y)
+				{
+					maxY = itemPx.y;
+				}
+			});
+
+			bounds.square[0].y = minY;
+			bounds.square[1].y = maxY;
+			bounds.size.h = maxY - minY;
+		}
+
+		return bounds;
+	}
 }

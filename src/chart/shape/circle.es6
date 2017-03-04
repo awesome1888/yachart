@@ -36,35 +36,35 @@ export class Circle extends Point
 		);
 	}
 
-	get bounds()
-	{
-		let coordinates = this.coordinates;
-		let bounds = [coordinates, coordinates];
-		let radius = this.radius;
+	// get bounds()
+	// {
+	// 	let coordinates = this.coordinates;
+	// 	let bounds = [coordinates, coordinates];
+	// 	let radius = this.radius;
+	//
+	// 	bounds[0].x -= radius;
+	// 	bounds[0].y += radius;
+	//
+	// 	bounds[1].x += radius;
+	// 	bounds[1].y -= radius;
+	//
+	// 	return bounds;
+	// }
 
-		bounds[0].x -= radius;
-		bounds[0].y += radius;
-
-		bounds[1].x += radius;
-		bounds[1].y -= radius;
-
-		return bounds;
-	}
-
-	get boundsCenter00()
-	{
-		let coordinates = this.coordinatesCenter00;
-		let bounds = [coordinates, coordinates];
-		let radius = this.radius;
-
-		bounds[0].x -= radius;
-		bounds[0].y += radius;
-
-		bounds[1].x += radius;
-		bounds[1].y -= radius;
-
-		return bounds;
-	}
+	// get boundsCenter00()
+	// {
+	// 	let coordinates = this.coordinatesCenter00;
+	// 	let bounds = [coordinates, coordinates];
+	// 	let radius = this.radius;
+	//
+	// 	bounds[0].x -= radius;
+	// 	bounds[0].y += radius;
+	//
+	// 	bounds[1].x += radius;
+	// 	bounds[1].y -= radius;
+	//
+	// 	return bounds;
+	// }
 
 	get radius()
 	{

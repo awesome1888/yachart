@@ -78,45 +78,65 @@
 
     require(['/dest/chart.js'], function(ChartModule){
 
+    	var chartA = 0;
+    	var chartB = 0;
+    	var chartC = 1;
+    	var chartD = 0;
+
     	var data1 = [];
 	    var data2 = [];
     	for(var k = 0; k < 200; k = k + 20)
         {
-            data1.push([k, 3 * Math.sqrt(k)]);
+            data1.push([k, 4 * Math.sqrt(k)]);
 	        data2.push([k, 4 * Math.sqrt(k)]);
         }
 
-	    var chartA = new ChartModule.Chart({
-		    scope: document.getElementById('chart-a'),
-		    data: data1,
-            fit: 'none'
-	    });
+        if(chartA)
+        {
+	        var chartA = new ChartModule.Chart({
+		        scope: document.getElementById('chart-a'),
+		        data: data1,
+		        fit: 'none'
+	        });
+        }
 
-	    var chartB = new ChartModule.Chart({
-		    scope: document.getElementById('chart-b'),
-		    data: data2,
-            fit: 'fit-x'
-	    });
+	    if(chartB)
+	    {
+		    var chartB = new ChartModule.Chart({
+			    scope: document.getElementById('chart-b'),
+			    data: data2,
+			    fit: 'fit-x'
+		    });
+	    }
 
 	    var data3 = [];
 	    var data4 = [];
 	    for(var k = -100; k < 400; k = k + 20)
 	    {
-		    data3.push([k, 15 * Math.cbrt(k)]);
+		    data3.push([k, 10 * Math.cbrt(k)]);
 		    data4.push([k, 10 * Math.cbrt(k)]);
 	    }
 
-	    var chartC = new ChartModule.Chart({
-		    scope: document.getElementById('chart-c'),
-		    data: data3,
-		    fit: 'none'
-	    });
+	    if(chartC)
+        {
+	        var chartC = new ChartModule.Chart({
+		        scope: document.getElementById('chart-c'),
+		        data: data3,
+		        fit: 'none',
+                align: 'top-right'
+	        });
+        }
 
-	    var chartD = new ChartModule.Chart({
-		    scope: document.getElementById('chart-d'),
-		    data: data4,
-		    fit: 'fit-x'
-	    });
+	    //data4 = [[-100, -50], [0, 0], [100, 50]];
+
+	    if(chartD)
+        {
+	        var chartD = new ChartModule.Chart({
+		        scope: document.getElementById('chart-d'),
+		        data: data4,
+		        fit: 'fit-x'
+	        });
+        }
 
 	    console.dir('ready');
     });
