@@ -19,10 +19,6 @@ export class Chart extends DOMController
 	{
 		return {
 			scope: null,
-			fit: 'none', // also 'fit', 'fit-x', 'fit-y'
-			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
-			unitSize: 2, // in pixels
-			minGridSpace: 30,
 			data: [],
 		};
 	}
@@ -71,12 +67,11 @@ export class Chart extends DOMController
 		{
 			let grid = new Grid({
 				container: this.gridContainer,
+
 				unitSize: this.option('unitSize'),
 				fit: this.option('fit'),
 				align: this.option('align'),
-				minGridSpace: this.option('minGridSpace')
 			});
-			//grid.center = {x: 10, y: 10};
 
 			this.vars.grid = grid;
 		}

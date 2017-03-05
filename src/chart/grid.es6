@@ -18,10 +18,10 @@ export class Grid extends BaseClass
 	get defaultOptions()
 	{
 		return {
-			fit: 'none', // also 'fit', 'fit-x', 'fit-y'
-			align: 'topRight', // also 'topLeft', 'bottomRight', 'bottomLeft'
+			fit: 'fit-y', // also 'fit', 'fit-x'
+			align: 'left', // also 'right', 'right-when-overflow'
 			unitSize: 10, // in pixels
-			minGridSpace: 30,
+			minGridSpace: 20,
 		};
 	}
 
@@ -337,45 +337,40 @@ export class Grid extends BaseClass
 	{
 		let pair = {center: this.defaultCenter, unitSize: this.defaultUnitSize};
 		let fit = this.option('fit');
+		let align = this.option('align');
 
 		let first = this.points.first;
 		let last = this.points.last;
 
-		if(fit == 'none')
-		{
-			// no fit, then use align
-			if(first && last && false)
-			{
-				// we need to locate center
-				let align = this.option('align');
-				let bounds = this.points.getDataBounds(pair);
+		// if(fit == 'none')
+		// {
+		// 	// no fit, then use align
+		// 	if(first && last)
+		// 	{
+		// 		// we need to locate center
+		// 		let align = this.option('align');
+		// 		let bounds = this.points.getDataBounds(pair);
+		//
+		// 		// align height, if needed
+		// 		if(bounds.size.h > this.heightPadded)
+		// 		{
+		// 			let k = this.heightPadded / bounds.size.h;
+		//
+		// 			let lastXY = this.points.last.getPixelRelative(pair);
+		// 			let offsetY = Math.round((bounds.size.h - lastXY.y) * k);
+		//
+		// 			//debugger;
+		//
+		// 			pair.center.y = pair.center.y - offsetY;
+		// 		}
+		// 	}
+		// }
 
-				// align height, if needed
-				if(bounds.size.h > this.heightPadded)
-				{
-					let lastXY = this.points.last.getPixelRelative(pair);
-					let offsetY = bounds.size.h - lastXY.y;
+		let fitAll = fit === 'fit';
+		let fitX = fit === 'fit-x';
+		let fitY = fit === 'fit-y';
 
-
-				}
-
-				// align width, if needed
-				if(bounds.size.w > this.widthPadded)
-				{
-					// move center to ...
-					if(align === 'right')
-					{
-						// ... put together top-right corner of bounds and top-right corner of grid
-						pair.center = {x: pair.center.x - bounds.square[1].x, y: pair.center.y - bounds.square[1].y};
-					}
-					else
-					{
-						// todo
-					}
-				}
-			}
-		}
-		else if(fit == 'fit-x')
+		if(fitAll || fitX || fitY)
 		{
 			if(first && last)
 			{
@@ -385,15 +380,22 @@ export class Grid extends BaseClass
 				let bounds = this.points.getDataBounds(pair);
 
 				let k = 1;
-				if(width <= bounds.size.w)
+
+				if(fitAll || fitX)
 				{
-					k = width / bounds.size.w;
+					if(width <= bounds.size.w)
+					{
+						k = width / bounds.size.w;
+					}
 				}
 
-				let newHeight = k * bounds.size.h;
-				if(height <= newHeight)
+				if(fitAll || fitY)
 				{
-					k = k * (height / newHeight);
+					let newHeight = k * bounds.size.h;
+					if(height <= newHeight)
+					{
+						k = k * (height / newHeight);
+					}
 				}
 
 				if(k !== 1)
@@ -403,7 +405,34 @@ export class Grid extends BaseClass
 				}
 
 				// move center to match bounds
-				pair.center = {x: pair.center.x - bounds.square[3].x, y: pair.center.y - bounds.square[3].y};
+
+				if(fitAll || fitX)
+				{
+					pair.center.x = pair.center.x - bounds.square[3].x;
+
+					if(fitX)
+					{
+						// do smth with Y
+					}
+				}
+				if(fitAll || fitY)
+				{
+					pair.center.y = pair.center.y - bounds.square[3].y;
+
+					if(fitY)
+					{
+						// do smth with X
+						if(bounds.size.w <= this.widthPadded || align === 'left')
+						{
+							pair.center.x = pair.center.x - bounds.square[3].x;
+						}
+						else if(align === 'right-when-overflow')
+						{
+							let diffX = this.widthPadded - bounds.square[1].x;
+							pair.center.x = pair.center.x + diffX;
+						}
+					}
+				}
 			}
 		}
 

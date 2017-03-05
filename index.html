@@ -20,11 +20,13 @@
                 </canvas>
             </div>
             <div class="yach-block-panel">
-                <div>
-                    <div class="yach-block-panel-orient">Top-Right</div>
-                    <div class="btn btn-sm btn-default">A</div>
-                    <div class="btn btn-sm btn-info">B</div>
-                    <div class="btn btn-sm btn-danger">C</div>
+                <div class="row">
+                    <div class="yach-block-panel-orient col-lg-3">Fit: none</div>
+                    <div class="col-lg-9">
+                        <div class="btn btn-sm btn-default">A</div>
+                        <div class="btn btn-sm btn-info">B</div>
+                        <div class="btn btn-sm btn-danger">C</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,11 +36,13 @@
                 </canvas>
             </div>
             <div class="yach-block-panel">
-                <div>
-                    <div class="yach-block-panel-orient">Fit-x</div>
-                    <div class="btn btn-sm btn-default">A</div>
-                    <div class="btn btn-sm btn-info">B</div>
-                    <div class="btn btn-sm btn-danger">C</div>
+                <div class="row">
+                    <div class="yach-block-panel-orient col-lg-3">Fit: all, align: left</div>
+                    <div class="col-lg-9">
+                        <div class="btn btn-sm btn-default">A</div>
+                        <div class="btn btn-sm btn-info">B</div>
+                        <div class="btn btn-sm btn-danger">C</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,11 +52,13 @@
                 </canvas>
             </div>
             <div class="yach-block-panel">
-                <div>
-                    <div class="yach-block-panel-orient">Top-Right (wider)</div>
-                    <div class="btn btn-sm btn-default">A</div>
-                    <div class="btn btn-sm btn-info">B</div>
-                    <div class="btn btn-sm btn-danger">C</div>
+                <div class="row">
+                    <div class="yach-block-panel-orient col-lg-3">Fit: y, align: right-when-overflow</div>
+                    <div class="col-lg-9">
+                        <div class="btn btn-sm btn-default">A</div>
+                        <div class="btn btn-sm btn-info">B</div>
+                        <div class="btn btn-sm btn-danger">C</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,11 +68,13 @@
                 </canvas>
             </div>
             <div class="yach-block-panel">
-                <div>
-                    <div class="yach-block-panel-orient">Fit-x (wider)</div>
-                    <div class="btn btn-sm btn-default">A</div>
-                    <div class="btn btn-sm btn-info">B</div>
-                    <div class="btn btn-sm btn-danger">C</div>
+                <div class="row">
+                    <div class="yach-block-panel-orient col-lg-3">Fit: all, align: left</div>
+                    <div class="col-lg-9">
+                        <div class="btn btn-sm btn-default">A</div>
+                        <div class="btn btn-sm btn-info">B</div>
+                        <div class="btn btn-sm btn-danger">C</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,10 +86,10 @@
 
     require(['/dest/chart.js'], function(ChartModule){
 
-    	var chartA = 0;
-    	var chartB = 0;
+    	var chartA = 1;
+    	var chartB = 1;
     	var chartC = 1;
-    	var chartD = 0;
+    	var chartD = 1;
 
     	var data1 = [];
 	    var data2 = [];
@@ -111,6 +119,8 @@
 			    data3.push([k, 0.6*k*k]);
 			    data4.push([k, 0.6*k*k]);
 		    }
+
+		    data3 = [[-100, 150], [0, 0], [100, 150], [200, 50], [300, 80], [400, 20], [500, 90]];
 	    }
 
         if(chartA)
@@ -127,19 +137,17 @@
 		    var chartB = new ChartModule.Chart({
 			    scope: document.getElementById('chart-b'),
 			    data: data2,
-			    fit: 'fit-x'
+			    fit: 'fit'
 		    });
 	    }
-
-	    data3 = [[-100, 50], [0, 0], [100, 50]];
 
 	    if(chartC)
         {
 	        var chartC = new ChartModule.Chart({
 		        scope: document.getElementById('chart-c'),
 		        data: data3,
-		        fit: 'none',
-                align: 'right'
+		        fit: 'fit-y',
+                align: 'right-when-overflow'
 	        });
         }
 
@@ -150,7 +158,7 @@
 	        var chartD = new ChartModule.Chart({
 		        scope: document.getElementById('chart-d'),
 		        data: data4,
-		        fit: 'fit-x'
+		        fit: 'fit'
 	        });
         }
 

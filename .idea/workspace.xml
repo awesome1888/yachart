@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e165590c-2207-4c82-a80f-166448e7e6a0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/sergey.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart.es6" afterPath="$PROJECT_DIR$/src/chart.es6" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/grid.es6" afterPath="$PROJECT_DIR$/src/chart/grid.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/point/manager.es6" afterPath="$PROJECT_DIR$/src/chart/point/manager.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/shape/point.es6" afterPath="$PROJECT_DIR$/src/chart/shape/point.es6" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="chart.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="67" column="14" lean-forward="false" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+            <state relative-caret-position="444">
+              <caret line="73" column="15" lean-forward="false" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -40,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grid.es6" pinned="false" current-in-tab="false">
+      <file leaf-file-name="grid.es6" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="339" column="0" lean-forward="false" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#90#140#0" expanded="true" />
@@ -55,11 +53,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/index.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="138" column="58" lean-forward="true" selection-start-line="138" selection-start-column="58" selection-end-line="138" selection-end-column="58" />
+              <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -68,7 +76,7 @@
       <file leaf-file-name="circle.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/oldchart/chart/shape/circle.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
+            <state relative-caret-position="765">
               <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
@@ -78,7 +86,7 @@
       <file leaf-file-name="manager.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart/point/manager.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
+            <state relative-caret-position="585">
               <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="17" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
@@ -90,7 +98,7 @@
       <file leaf-file-name="canvas.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1914">
+            <state relative-caret-position="2145">
               <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#Canvas#0" expanded="false" />
@@ -103,7 +111,7 @@
       <file leaf-file-name="point.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart/shape/point.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="435">
               <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="20" />
               <folding />
             </state>
@@ -123,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>replace-ext</find>
       <find>bject-assign</find>
       <find>req</find>
       <find>require</find>
@@ -153,6 +160,7 @@
       <find>renderGridUnitLines</find>
       <find>clearCaches</find>
       <find>getDataBounds</find>
+      <find>minGridSpace</find>
     </findStrings>
     <replaceStrings>
       <replace>(</replace>
@@ -210,7 +218,6 @@
         <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/src/util/baseclass.es6" />
         <option value="$PROJECT_DIR$/src/css/index.less" />
-        <option value="$PROJECT_DIR$/src/chart.es6" />
         <option value="$PROJECT_DIR$/src/util/iterable.es6" />
         <option value="$PROJECT_DIR$/src/oldchart/chart.es6" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
@@ -218,6 +225,7 @@
         <option value="$PROJECT_DIR$/src/chart/canvas.es6" />
         <option value="$PROJECT_DIR$/src/chart/shape/point.es6" />
         <option value="$PROJECT_DIR$/src/chart/point/manager.es6" />
+        <option value="$PROJECT_DIR$/src/chart.es6" />
         <option value="$PROJECT_DIR$/src/chart/grid.es6" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
@@ -262,6 +270,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -370,7 +379,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -486,18 +494,19 @@
       <workItem from="1488483054881" duration="12991000" />
       <workItem from="1488521289055" duration="927000" />
       <workItem from="1488522275473" duration="4000" />
-      <workItem from="1488623647673" duration="26664000" />
+      <workItem from="1488623647673" duration="26692000" />
+      <workItem from="1488697529725" duration="4989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151495000" />
+    <option name="totallyTimeSpent" value="156512000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15910839" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24365872" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -692,13 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/domcontroller.es6">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -718,7 +720,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/oldchart/chart/shape/circle.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
+        <state relative-caret-position="765">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
@@ -744,13 +746,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
+        <state relative-caret-position="2145">
           <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#Canvas#0" expanded="false" />
@@ -761,7 +762,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chart/point/manager.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
+        <state relative-caret-position="585">
           <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="17" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
@@ -769,42 +770,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/chart/shape/point.es6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/chart.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="67" column="14" lean-forward="false" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+        <state relative-caret-position="444">
+          <caret line="73" column="15" lean-forward="false" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chart/shape/point.es6">
+    <entry file="file://$PROJECT_DIR$/src/css/index.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="20" />
+        <state relative-caret-position="240">
+          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="339" column="0" lean-forward="false" selection-start-line="339" selection-start-column="0" selection-end-line="339" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#90#140#0" expanded="true" />
-            <element signature="n#!!block;n#renderGridUnitLines#0;n#Grid#0" expanded="false" />
-            <element signature="n#!!block;n#renderGridLineSequence#0;n#Grid#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="138" column="58" lean-forward="true" selection-start-line="138" selection-start-column="58" selection-end-line="138" selection-end-column="58" />
+          <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#90#140#0" expanded="true" />
+            <element signature="n#!!block;n#renderGridUnitLines#0;n#Grid#0" expanded="false" />
+            <element signature="n#!!block;n#renderGridLineSequence#0;n#Grid#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
