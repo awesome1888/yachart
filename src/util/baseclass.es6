@@ -25,9 +25,9 @@ export class BaseClass
 		Util.bindEvent(this, name, cb);
 	}
 
-	fireEvent(name)
+	fireEvent(name, params)
 	{
-		Util.fireEvent(this, name);
+		Util.fireEvent(this, name, params);
 	}
 
 	get defaultOptions()

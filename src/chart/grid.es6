@@ -13,6 +13,7 @@ export class Grid extends BaseClass
 		super(options);
 
 		this.clearCaches();
+		this.bindEvent('click', this.onClick.bind(this));
 	}
 
 	get defaultOptions()
@@ -207,9 +208,20 @@ export class Grid extends BaseClass
 		}.bind(this));
 	}
 
-	onCanvasClick(coords)
+	onClick(coords)
 	{
 		console.dir('Click: '+coords.x+' : '+coords.y);
+	}
+
+	onCanvasClick(coords)
+	{
+		if(coords.x >= this.paddingLeft && coords.x <= this.paddingLeft + this.widthPadded)
+		{
+			if(coords.y >= this.paddingTop && coords.y <= this.paddingTop + this.heightPadded)
+			{
+				this.fireEvent('click', [{x: coords.x - this.paddingLeft, y: coords.y - this.paddingTop}]);
+			}
+		}
 	}
 
 	/**
