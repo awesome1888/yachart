@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e165590c-2207-4c82-a80f-166448e7e6a0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chart/grid.es6" afterPath="$PROJECT_DIR$/src/chart/grid.es6" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/baseclass.es6" afterPath="$PROJECT_DIR$/src/util/baseclass.es6" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,24 +38,14 @@
       <file leaf-file-name="grid.es6" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="212" column="55" lean-forward="true" selection-start-line="212" selection-start-column="55" selection-end-line="212" selection-end-column="55" />
+            <state relative-caret-position="278">
+              <caret line="216" column="60" lean-forward="false" selection-start-line="216" selection-start-column="60" selection-end-line="216" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#90#140#0" expanded="true" />
                 <element signature="n#!!block;n#renderGridUnitLines#0;n#Grid#0" expanded="false" />
                 <element signature="n#!!block;n#renderGridLineSequence#0;n#Grid#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="baseclass.es6" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/baseclass.es6">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -85,9 +73,21 @@
       <file leaf-file-name="canvas.es6" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+            <state relative-caret-position="249">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chart.es6" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/oldchart/chart.es6">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-8">
+              <caret line="905" column="62" lean-forward="false" selection-start-line="905" selection-start-column="62" selection-end-line="905" selection-end-column="62" />
+              <folding>
+                <marker date="1488732721519" expanded="true" signature="14831:14864" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PointManager</find>
-      <find>-griddy</find>
       <find>Bas</find>
       <find>onMouseMove</find>
       <find>2d</find>
@@ -167,6 +165,8 @@
       <find>mouse</find>
       <find>onClick</find>
       <find>pos</find>
+      <find>map</find>
+      <find>pixel2Data</find>
     </findStrings>
     <replaceStrings>
       <replace>(</replace>
@@ -232,8 +232,8 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/oldchart/chart.es6" />
         <option value="$PROJECT_DIR$/src/chart/canvas.es6" />
-        <option value="$PROJECT_DIR$/src/chart/grid.es6" />
         <option value="$PROJECT_DIR$/src/util/baseclass.es6" />
+        <option value="$PROJECT_DIR$/src/chart/grid.es6" />
       </list>
     </option>
   </component>
@@ -519,18 +519,18 @@
       <workItem from="1488521289055" duration="927000" />
       <workItem from="1488522275473" duration="4000" />
       <workItem from="1488623647673" duration="26692000" />
-      <workItem from="1488697529725" duration="19402000" />
+      <workItem from="1488697529725" duration="21434000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170925000" />
+    <option name="totallyTimeSpent" value="172957000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2959262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21752498" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51121074" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -780,16 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/oldchart/chart.es6">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="547" column="0" lean-forward="true" selection-start-line="547" selection-start-column="0" selection-end-line="547" selection-end-column="0" />
-          <folding>
-            <marker date="1488732721519" expanded="true" signature="14831:14864" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -804,24 +794,6 @@
           <caret line="36" column="31" lean-forward="false" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="31" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chart.es6">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="45" column="20" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -842,10 +814,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/chart/canvas.es6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/oldchart/chart.es6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="905" column="62" lean-forward="false" selection-start-line="905" selection-start-column="62" selection-end-line="905" selection-end-column="62" />
+          <folding>
+            <marker date="1488732721519" expanded="true" signature="14831:14864" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chart.es6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="45" column="20" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/chart/grid.es6">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="212" column="55" lean-forward="true" selection-start-line="212" selection-start-column="55" selection-end-line="212" selection-end-column="55" />
+        <state relative-caret-position="278">
+          <caret line="216" column="60" lean-forward="false" selection-start-line="216" selection-start-column="60" selection-end-line="216" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#90#140#0" expanded="true" />

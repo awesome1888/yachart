@@ -210,7 +210,11 @@ export class Grid extends BaseClass
 
 	onClick(coords)
 	{
+		// paddings already excluded
+		let data = this.pixel2Data(coords, {paddingTop: 0, paddingLeft: 0});
+
 		console.dir('Click: '+coords.x+' : '+coords.y);
+		console.dir('Click: '+data.x+' : '+data.y); // wrong
 	}
 
 	onCanvasClick(coords)
@@ -258,11 +262,14 @@ export class Grid extends BaseClass
 	 */
 	pixel2Data(point, parameters = {})
 	{
-		let unit = this.unitSize;
+		let unit = parameters.unitSize || this.unitSize;
+		let center = parameters.center || this.center;
+		let paddingTop = parameters.paddingTop || this.paddingTop;
+		let paddingLeft = parameters.paddingLeft || this.paddingLeft;
 
 		return {
-			x: Math.floor(point.x / unit),
-			y: Math.floor(point.y / unit)
+			x: Math.floor((point.x - center.x - paddingLeft) / unit),
+			y: Math.floor((point.y) / unit)
 		};
 	}
 
