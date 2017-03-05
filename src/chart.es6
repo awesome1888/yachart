@@ -7,10 +7,8 @@ export class Chart extends DOMController
 	{
 		super(options);
 
-		this.grid.addPoints(this.option('data'));
-
 		this.updateStyle();
-		this.render(true);
+		this.addPoints(this.option('data'));
 
 		// todo: fire ready() event
 	}
@@ -21,6 +19,18 @@ export class Chart extends DOMController
 			scope: null,
 			data: [],
 		};
+	}
+
+	addPoints(data)
+	{
+		this.grid.addPoints(data);
+		this.render(true);
+	}
+
+	addPoint(x, y)
+	{
+		this.grid.addPoint([x, y]);
+		this.render();
 	}
 
 	bindEvents()
@@ -49,6 +59,17 @@ export class Chart extends DOMController
 		grid.paddingBottomInstant = 50;
 		grid.paddingLeftInstant = 50;
 		grid.paddingRightInstant = 10;
+	}
+
+	get last()
+	{
+		let last = this.grid.points.last;
+		if(!last)
+		{
+			return {x: 0, y: 0};
+		}
+
+		return {x: last.x, y: last.y};
 	}
 
 	get gridContainer()

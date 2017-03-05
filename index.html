@@ -21,11 +21,14 @@
             </div>
             <div class="yach-block-panel">
                 <div class="row">
-                    <div class="yach-block-panel-orient col-lg-3">Fit: none</div>
-                    <div class="col-lg-9">
+                    <div class="yach-block-panel-orient col-sm-3">Fit: none</div>
+                    <div class="col-sm-6">
                         <div class="btn btn-sm btn-default">A</div>
                         <div class="btn btn-sm btn-info">B</div>
                         <div class="btn btn-sm btn-danger">C</div>
+                    </div>
+                    <div class="yach-block-panel-orient col-sm-3">
+                        <div class="btn btn-sm btn-success">Append</div>
                     </div>
                 </div>
             </div>
@@ -37,11 +40,14 @@
             </div>
             <div class="yach-block-panel">
                 <div class="row">
-                    <div class="yach-block-panel-orient col-lg-3">Fit: all, align: left</div>
-                    <div class="col-lg-9">
+                    <div class="yach-block-panel-orient col-sm-3">Fit: all, align: left</div>
+                    <div class="col-sm-6">
                         <div class="btn btn-sm btn-default">A</div>
                         <div class="btn btn-sm btn-info">B</div>
                         <div class="btn btn-sm btn-danger">C</div>
+                    </div>
+                    <div class="yach-block-panel-orient col-sm-3">
+                        <div class="btn btn-sm btn-success">Append</div>
                     </div>
                 </div>
             </div>
@@ -53,11 +59,14 @@
             </div>
             <div class="yach-block-panel">
                 <div class="row">
-                    <div class="yach-block-panel-orient col-lg-3">Fit: y, align: right-when-overflow</div>
-                    <div class="col-lg-9">
+                    <div class="yach-block-panel-orient col-sm-3">Fit: y, align: right-when-overflow</div>
+                    <div class="col-sm-6">
                         <div class="btn btn-sm btn-default">A</div>
                         <div class="btn btn-sm btn-info">B</div>
                         <div class="btn btn-sm btn-danger">C</div>
+                    </div>
+                    <div class="yach-block-panel-orient col-sm-3">
+                        <div class="btn btn-sm btn-success" id="append-3">Append</div>
                     </div>
                 </div>
             </div>
@@ -69,11 +78,14 @@
             </div>
             <div class="yach-block-panel">
                 <div class="row">
-                    <div class="yach-block-panel-orient col-lg-3">Fit: all, align: left</div>
-                    <div class="col-lg-9">
+                    <div class="yach-block-panel-orient col-sm-3">Fit: all, align: left</div>
+                    <div class="col-sm-6">
                         <div class="btn btn-sm btn-default">A</div>
                         <div class="btn btn-sm btn-info">B</div>
                         <div class="btn btn-sm btn-danger">C</div>
+                    </div>
+                    <div class="yach-block-panel-orient col-sm-3">
+                        <div class="btn btn-sm btn-success">Append</div>
                     </div>
                 </div>
             </div>
@@ -161,6 +173,16 @@
 		        fit: 'fit'
 	        });
         }
+
+        /////////////////////////////////
+
+        document.getElementById('append-3').addEventListener('click', function(){
+
+        	let x = chartC.last.x + 150;
+        	let y = Math.round(Math.random() * 100);
+
+            chartC.addPoint(x, y);
+        });
 
 	    console.dir('ready');
     });

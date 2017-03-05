@@ -554,7 +554,7 @@ let yachart = class YAChart extends BaseClass
 		return p;
 	}
 
-	addPoint(x, y, params)
+	addPoint(x, y, params = {})
 	{
 		this.unsetPointAt(x);
 
@@ -569,7 +569,6 @@ let yachart = class YAChart extends BaseClass
 		this.dropMeasures();
 		this.vars.dataSquare = null; // todo: remove
 
-		params = params || {};
 		if(params.show !== false)
 		{
 			// get startY (canvas) from neighbours

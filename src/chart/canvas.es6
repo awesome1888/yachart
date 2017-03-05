@@ -7,12 +7,26 @@ export class Canvas
 		this.canvas = canvas;
 		this.prevSize = {w: 0, h: 0};
 
+		this.mouse = {x: 0, y: 0};
+
 		this.canvas.addEventListener('mousemove', Util.throttle(
 			this.onMouseMove.bind(this),
 			100,
 			{firstCall: true}
 		));
 		this.canvas.addEventListener('click', this.onClick.bind(this));
+	}
+
+	get pos()
+	{
+		return Util.pos(this.canvas);
+
+		// if(!this.cache.pos)
+		// {
+		// 	this.cache.pos = Util.pos(this.canvas);
+		// }
+		//
+		// return this.cache.pos;
 	}
 
 	fit(node)
@@ -128,20 +142,45 @@ export class Canvas
 		ctx.stroke();
 	}
 
-	onMouseMove()
+	onMouseMove(e)
 	{
-		Util.fireEvent(this, 'canvasMouseMove');
+		e = e || window.event;
+
+		let mouse = this.mouse;
+		let docElement = document.documentElement;
+		let docBody = document.body;
+
+		// save last global coordinates
+		mouse.x = e.pageX ?
+			e.pageX :
+			(e.clientX ? e.clientX + (docElement.scrollLeft || docBody.scrollLeft) - docElement.clientLeft : 0);
+		mouse.y = e.pageY ?
+			e.pageY :
+			(e.clientY ? e.clientY + (docElement.scrollTop || docBody.scrollTop) - docElement.clientTop : 0);
+
+		//Util.fireEvent(this, 'canvasMouseMove');
 	}
 
 	onClick()
 	{
-		Util.fireEvent(this, 'canvasClick');
+		let mouse = this.mouse;
+		let pos = this.pos;
+
+		let doc = document.body;
+
+		let scrollTop = doc.scrollTop;
+		let scrollLeft = doc.scrollLeft;
+
+		let p = {x: mouse.x - pos.left - scrollLeft, y: mouse.y - pos.top - scrollTop};
+
+		Util.fireEvent(this, 'canvasClick', [p]);
 	}
 
 	clearCaches()
 	{
 		this._height = null;
 		this._width = null;
+		this.cache = {};
 	}
 
 	get height()

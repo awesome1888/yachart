@@ -7,6 +7,13 @@ export class Manager extends Iterable
 	constructor()
 	{
 		super();
+
+		this.clearCaches();
+	}
+
+	clearCaches()
+	{
+		this.vars.caches = {x: null};
 	}
 
 	add(data)
@@ -23,15 +30,27 @@ export class Manager extends Iterable
 			}
 		}
 
-		if(type)
+		let x = params.x;
+		let existing = this.findItemByX(x);
+		if(existing)
 		{
-			if(type.toLowerCase() === 'circle')
+			existing.y = params.y;
+		}
+		else
+		{
+			if(type)
 			{
-				super.push(new Circle(params));
+				if(type.toLowerCase() === 'circle')
+				{
+					super.push(new Circle(params));
+				}
 			}
 		}
+	}
 
-		// todo: throw an error?
+	findItemByX(x)
+	{
+		return this.vars.values[x];
 	}
 
 	/**

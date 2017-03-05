@@ -10,15 +10,10 @@ export class Iterable extends BaseClass
 		this.vars.order = [];
 	}
 
-	push(instance, key)
+	push(instance)
 	{
-		if(key === undefined)
-		{
-			key = this.vars.order.length;
-		}
-
-		this.vars.values[key] = instance;
-		this.vars.order.push(key);
+		this.vars.values[instance.x] = instance;
+		this.vars.order.push(instance.x);
 	}
 
 	get count()

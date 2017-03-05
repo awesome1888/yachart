@@ -207,14 +207,9 @@ export class Grid extends BaseClass
 		}.bind(this));
 	}
 
-	onCanvasMouseMove()
+	onCanvasClick(coords)
 	{
-		//console.dir('cmm');
-	}
-
-	onCanvasClick()
-	{
-		//console.dir('ccl');
+		console.dir('Click: '+coords.x+' : '+coords.y);
 	}
 
 	/**
@@ -524,7 +519,7 @@ export class Grid extends BaseClass
 		if(this.vars.canvas === undefined)
 		{
 			let canvas = new Canvas(this.option('container').querySelector('canvas'));
-			Util.bindEvent(canvas, 'canvasMouseMove', this.onCanvasMouseMove.bind(this));
+			//Util.bindEvent(canvas, 'canvasMouseMove', this.onCanvasMouseMove.bind(this));
 			Util.bindEvent(canvas, 'canvasClick', this.onCanvasClick.bind(this));
 
 			this.vars.canvas = canvas;
