@@ -1,0 +1,48 @@
+.yachart
+{
+	.grid
+	{
+		padding: 10px 10px 50px 50px;
+		border: 1px solid black;
+
+		.label
+		{
+			color: #3c3c3c;
+			visibility: visible;
+		}
+
+		.axis-x,
+		.axis-y
+		{
+			color: black;
+			height: 1px;
+			visibility: visible;
+		}
+
+		.unit-line
+		{
+			color: #c0c0c0;
+			height: 1px;
+			visibility: visible;
+		}
+
+		.point-circle
+		{
+			height: 5px;
+			border: 1px solid red;
+			background-color: #ffffff;
+
+			&.hover {
+				height: 10px;
+				border: 2px solid green;
+			}
+		}
+
+		.line
+		{
+			height: 2px;
+			color: red;
+			visibility: visible;
+		}
+	}
+}
