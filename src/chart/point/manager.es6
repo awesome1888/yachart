@@ -34,6 +34,7 @@ export class Manager extends Iterable
 		let existing = this.findItemByX(x);
 		if(existing)
 		{
+			console.dir('existing');
 			existing.y = params.y;
 		}
 		else
@@ -42,7 +43,8 @@ export class Manager extends Iterable
 			{
 				if(type.toLowerCase() === 'circle')
 				{
-					super.push(new Circle(params));
+					//super.insertByOrder(params.x, new Circle(params));
+					super.push(params.x, new Circle(params));
 				}
 			}
 		}

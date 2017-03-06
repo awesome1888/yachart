@@ -1,5 +1,6 @@
 import {DOMController} from '/src/util/domcontroller.es6';
 import {Grid} from '/src/chart/grid.es6';
+import {Iterable} from '/src/util/iterable.es6';
 
 export class Chart extends DOMController
 {
@@ -100,3 +101,9 @@ export class Chart extends DOMController
 		return this.vars.grid;
 	}
 }
+
+///////////////////
+
+
+
+window.iterable = new Iterable();

@@ -10,10 +10,27 @@ export class Iterable extends BaseClass
 		this.vars.order = [];
 	}
 
-	push(instance)
+	push(order, instance)
 	{
-		this.vars.values[instance.x] = instance;
-		this.vars.order.push(instance.x);
+		this.vars.values[order] = instance;
+		this.vars.order.push(order);
+	}
+
+	insertByOrder(order, item)
+	{
+		if(this.count)
+		{
+			let after = this.findAfter(order);
+		}
+		else
+		{
+			this.push(order, item);
+		}
+	}
+
+	findAfter(order)
+	{
+		//if()
 	}
 
 	get count()

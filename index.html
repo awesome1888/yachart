@@ -96,7 +96,7 @@
 
 <script>
 
-    require(['/dest/chart.js'], function(ChartModule){
+    require(['/dest/chart.js'], function(Exported){
 
     	var chartA = 1;
     	var chartB = 1;
@@ -132,21 +132,21 @@
 			    data4.push([k, 0.6*k*k]);
 		    }
 
-		    data3 = [[-100, 150], [0, 0], [100, 150], [200, 50], [300, 80], [400, 20], [500, 90]];
+		    data3 = [[-100, 150], [0, 0], [50, -20], [100, 150], [200, 50], [300, 80], [400, 20], [500, 90]];
 	    }
 
         if(chartA)
         {
-	        var chartA = new ChartModule.Chart({
+	        var chartA = new Exported.Chart({
 		        scope: document.getElementById('chart-a'),
 		        data: data1,
-		        fit: 'none'
+		        fit: 'none',
 	        });
         }
 
 	    if(chartB)
 	    {
-		    var chartB = new ChartModule.Chart({
+		    var chartB = new Exported.Chart({
 			    scope: document.getElementById('chart-b'),
 			    data: data2,
 			    fit: 'fit'
@@ -155,7 +155,7 @@
 
 	    if(chartC)
         {
-	        var chartC = new ChartModule.Chart({
+	        var chartC = new Exported.Chart({
 		        scope: document.getElementById('chart-c'),
 		        data: data3,
 		        fit: 'fit-y',
@@ -167,7 +167,7 @@
 
 	    if(chartD)
         {
-	        var chartD = new ChartModule.Chart({
+	        var chartD = new Exported.Chart({
 		        scope: document.getElementById('chart-d'),
 		        data: data4,
 		        fit: 'fit'

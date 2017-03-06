@@ -208,13 +208,14 @@ export class Grid extends BaseClass
 		}.bind(this));
 	}
 
-	onClick(coords)
+	onClick(coords, coordsGlobal)
 	{
 		// paddings already excluded
-		let data = this.pixel2Data(coords, {paddingTop: 0, paddingLeft: 0});
+		let data = this.pixel2Data(coordsGlobal, {paddingTop: 0, paddingBottom: 0});
 
-		console.dir('Click: '+coords.x+' : '+coords.y);
-		console.dir('Click: '+data.x+' : '+data.y); // wrong
+		this.addPoint(data);
+
+		//console.dir('Click: '+coordsGlobal.x+' : '+coordsGlobal.y+' => '+data.x+' : '+data.y);
 	}
 
 	onCanvasClick(coords)
@@ -223,7 +224,7 @@ export class Grid extends BaseClass
 		{
 			if(coords.y >= this.paddingTop && coords.y <= this.paddingTop + this.heightPadded)
 			{
-				this.fireEvent('click', [{x: coords.x - this.paddingLeft, y: coords.y - this.paddingTop}]);
+				this.fireEvent('click', [{x: coords.x - this.paddingLeft, y: coords.y - this.paddingTop}, coords]);
 			}
 		}
 	}
@@ -264,12 +265,14 @@ export class Grid extends BaseClass
 	{
 		let unit = parameters.unitSize || this.unitSize;
 		let center = parameters.center || this.center;
-		let paddingTop = parameters.paddingTop || this.paddingTop;
+		let paddingBottom = parameters.paddingBottom || this.paddingBottom;
 		let paddingLeft = parameters.paddingLeft || this.paddingLeft;
+
+		// Math.floor((point.y) / unit)
 
 		return {
 			x: Math.floor((point.x - center.x - paddingLeft) / unit),
-			y: Math.floor((point.y) / unit)
+			y: Math.floor((this.height - paddingBottom - center.y - point.y) / unit)
 		};
 	}
 
@@ -353,40 +356,13 @@ export class Grid extends BaseClass
 		let fit = this.option('fit');
 		let align = this.option('align');
 
-		let first = this.points.first;
-		let last = this.points.last;
-
-		// if(fit == 'none')
-		// {
-		// 	// no fit, then use align
-		// 	if(first && last)
-		// 	{
-		// 		// we need to locate center
-		// 		let align = this.option('align');
-		// 		let bounds = this.points.getDataBounds(pair);
-		//
-		// 		// align height, if needed
-		// 		if(bounds.size.h > this.heightPadded)
-		// 		{
-		// 			let k = this.heightPadded / bounds.size.h;
-		//
-		// 			let lastXY = this.points.last.getPixelRelative(pair);
-		// 			let offsetY = Math.round((bounds.size.h - lastXY.y) * k);
-		//
-		// 			//debugger;
-		//
-		// 			pair.center.y = pair.center.y - offsetY;
-		// 		}
-		// 	}
-		// }
-
 		let fitAll = fit === 'fit';
 		let fitX = fit === 'fit-x';
 		let fitY = fit === 'fit-y';
 
 		if(fitAll || fitX || fitY)
 		{
-			if(first && last)
+			if(this.points.count)
 			{
 				let width = this.widthPadded;
 				let height = this.heightPadded;
