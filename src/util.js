@@ -159,11 +159,11 @@
 		},
 		then: function(onFulfilled, onRejected)
 		{
-			if(Util.Util.isFunction(onFulfilled))
+			if(Util.isFunction(onFulfilled))
 			{
 				this.onFulfilled.push(onFulfilled);
 			}
-			if(Util.Util.isFunction(onRejected))
+			if(Util.isFunction(onRejected))
 			{
 				this.onRejected.push(onRejected);
 			}
@@ -201,10 +201,10 @@
 					this_.reject(reason);
 				});
 			}
-			else if(Util.Util.isFunction(x) || Util.Util.isObject(x)) // process i.e. "thenable" - a poorly-written promises
+			else if(Util.isFunction(x) || Util.isObject(x)) // process i.e. "thenable" - a poorly-written promises
 			{
 				var then = x.then;
-				if(Util.Util.isFunction(then))
+				if(Util.isFunction(then))
 				{
 					var executed = false;
 
@@ -330,12 +330,39 @@
 				p = p.then(function(){
 					return todo[k].apply(this_, []);
 				});
+				// todo: what about reject?
 			})(k, this);
 		}
 
 		fP.resolve();
 
 		return fP;
+	};
+	Util.Promise.all = function(todo)
+	{
+		var p = new Util.Promise();
+
+		if(!Util.isArray(todo) || !todo.length)
+		{
+			p.resolve();
+			return p;
+		}
+
+		var count = todo.length;
+		for(var k = 0; k < todo.length; k++)
+		{
+			todo[k].then(function(){
+				count--;
+				if(!count)
+				{
+					p.resolve();
+				}
+			}, function(){
+				p.reject();
+			});
+		}
+
+		return p;
 	};
 
 }).call(this);

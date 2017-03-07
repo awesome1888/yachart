@@ -10,13 +10,20 @@
 <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
 <script src="http://chaijs.com/chai.js"></script>
 <script src="/node_modules/requirejs/require.js"></script>
+<script src="/dest/util.js"></script>
 <script>mocha.setup('bdd');</script>
 
+<script>window.tests = [];</script>
+
+<!-- tests start -->
 <script src="/test/client/util/iterable.js"></script>
+<!-- tests end -->
 
 <script>
-    mocha.checkLeaks();
-    mocha.run();
+	Util.Promise.all(window.tests).then(function(){
+		mocha.checkLeaks();
+		mocha.run();
+    });
 </script>
 </body>
 </html>
