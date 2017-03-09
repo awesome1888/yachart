@@ -80,8 +80,10 @@ export class Grid extends BaseClass
 		this.renderGridUnitLines();
 		this.renderGridAxis();
 
-		this.renderData();
+		this.renderPointLines();
 		this.renderGridBorder();
+
+		this.renderPoints();
 	}
 
 	renderGridBorder()
@@ -186,7 +188,7 @@ export class Grid extends BaseClass
 		let chr = this.centerHeightRight;
 
 		// horizontal
-		if(chl.x >= paddingLeft && chl.x <= paddingLeft + width)
+		if(this.isVisible(chl))
 		{
 			this.canvas.line(chl, chr);
 		}
@@ -195,16 +197,43 @@ export class Grid extends BaseClass
 		let cwb = this.centerWidthBottom;
 
 		// vertical
-		if(cwt.y >= paddingTop && cwt.y <= paddingTop + height)
+		if(this.isVisible(cwt))
 		{
 			this.canvas.line(cwt, cwb);
 		}
 	}
 
-	renderData()
+	renderPointLines()
+	{
+		this.canvas.rectangleClip(this.topLeft, {w: this.widthPadded, h: this.heightPadded});
+
+		// todo: possible separate class for "line" entity
+		this.points.each(function(item, key, extra){
+			if(extra.right)
+			{
+				// draw line to the next point
+
+				let location = this.data2Pixel(item.location);
+				let rLocation = this.data2Pixel(extra.right.location);
+
+				this.canvas.line(
+					location,
+					rLocation,
+					{color: '#c9302c', thickness: 2}
+				);
+			}
+		}.bind(this));
+
+		this.canvas.resetClip();
+	}
+
+	renderPoints()
 	{
 		this.points.each(function(item, key, extra){
-			item.render(extra);
+			if(item.isVisible)
+			{
+				item.render(extra);
+			}
 		}.bind(this));
 	}
 
@@ -220,12 +249,9 @@ export class Grid extends BaseClass
 
 	onCanvasClick(coords)
 	{
-		if(coords.x >= this.paddingLeft && coords.x <= this.paddingLeft + this.widthPadded)
+		if(this.isVisible(coords))
 		{
-			if(coords.y >= this.paddingTop && coords.y <= this.paddingTop + this.heightPadded)
-			{
-				this.fireEvent('click', [{x: coords.x - this.paddingLeft, y: coords.y - this.paddingTop}, coords]);
-			}
+			this.fireEvent('click', [{x: coords.x - this.paddingLeft, y: coords.y - this.paddingTop}, coords]);
 		}
 	}
 
@@ -610,5 +636,11 @@ export class Grid extends BaseClass
 	set paddingRightInstant(value)
 	{
 		this.vars.paddingRight = value;
+	}
+
+	isVisible(p)
+	{
+		return ((p.x >= this.paddingLeft && p.x <= this.paddingLeft + this.widthPadded) &&
+				(p.y >= this.paddingTop && p.y <= this.paddingTop + this.heightPadded));
 	}
 }

@@ -57,8 +57,6 @@ export class Canvas
 
 	rectangle(point, size, parameters = {})
 	{
-		parameters = parameters || {};
-
 		let ctx = this.context;
 		let o = (parameters.thickness || 1) % 2 ? 0.5 : 0;
 
@@ -72,10 +70,26 @@ export class Canvas
 		ctx.stroke();
 	}
 
+	rectangleClip(point, size, parameters = {})
+	{
+		let ctx = this.context;
+
+		ctx.save();
+
+		ctx.beginPath();
+		ctx.rect(point.x, point.y, size.w, size.h);
+		ctx.clip();
+	}
+
+	resetClip()
+	{
+		let ctx = this.context;
+
+		ctx.restore();
+	}
+
 	circle(point, radius, parameters = {})
 	{
-		parameters = parameters || {};
-
 		let ctx = this.context;
 
 		radius = radius || 2;
@@ -100,8 +114,6 @@ export class Canvas
 		{
 			return;
 		}
-
-		parameters = parameters || {};
 
 		let ctx = this.context;
 		let point = null;
@@ -128,7 +140,6 @@ export class Canvas
 
 	line(from, to, parameters = {})
 	{
-		parameters = parameters || {};
 		parameters.thickness = parameters.thickness || 1;
 
 		let ctx = this.context;
@@ -181,6 +192,11 @@ export class Canvas
 		this._height = null;
 		this._width = null;
 		this.cache = {};
+	}
+
+	set composition(value)
+	{
+		this.context.globalCompositeOperation = value;
 	}
 
 	get height()

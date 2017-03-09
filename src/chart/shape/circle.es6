@@ -6,19 +6,6 @@ export class Circle extends Point
 	{
 		let location = this.grid.data2Pixel(this.location);
 
-		if(parameters.right)
-		{
-			// draw line to the next point
-
-			let rLocation = this.grid.data2Pixel(parameters.right.location);
-
-			this.grid.canvas.line(
-				location,
-				rLocation,
-				{color: '#c9302c', thickness: 2}
-			);
-		}
-
 		//let radius = visibleState.radius;
 		let radius = this.radius;
 		if(!radius)

@@ -43,6 +43,11 @@ export class Point extends BaseClass
 		return this.grid.data2PixelRelative(this, {unitSize: this.grid.defaultUnitSize});
 	}
 
+	get isVisible()
+	{
+		return this.grid.isVisible(this.pixel);
+	}
+
 	appear()
 	{
 		let p = new Util.Promise();
