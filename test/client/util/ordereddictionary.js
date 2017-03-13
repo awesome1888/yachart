@@ -4,7 +4,7 @@ var p = new Util.Promise();
 /**
  * @see http://chaijs.com/api/bdd/
  */
-require(['/dest/util/iterable.js'], function(Exported){
+require(['/dest/util/ordereddictionary.js'], function(Exported){
 
 	let helperItemIs = function(item, pair)
 	{
@@ -13,9 +13,9 @@ require(['/dest/util/iterable.js'], function(Exported){
 		expect(item.instance).to.equal(pair[1]);
 	};
 
-	describe("Iterable", function() {
+	describe("OrderedDictionary", function() {
 
-		let iterable = new Exported.Iterable();
+		let iterable = new Exported.OrderedDictionary();
 
 		describe("insert", function() {
 			it("should insert the first one", function() {

@@ -1,6 +1,6 @@
 import {BaseClass} from '/src/util/baseclass.es6';
 
-export class Iterable extends BaseClass
+export class OrderedDictionary extends BaseClass
 {
 	constructor()
 	{

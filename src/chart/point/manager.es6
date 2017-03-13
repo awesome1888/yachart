@@ -1,8 +1,8 @@
-import {Iterable} from '/src/util/iterable.es6';
+import {OrderedDictionary} from '/src/util/ordereddictionary.es6';
 import {Circle} from '/src/chart/shape/circle.es6';
 import '/src/util.js';
 
-export class Manager extends Iterable
+export class Manager extends OrderedDictionary
 {
 	constructor()
 	{

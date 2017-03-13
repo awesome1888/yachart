@@ -1,12 +1,9 @@
-import {Iterable} from '/src/util/iterable.es6';
 import {Animation} from '/src/chart/fx/animation.es6';
 
-export class Flow extends Iterable
+export class Flow
 {
 	constructor()
 	{
-		super();
-
 		this.vars = {
 			pool: {},
 			order: [],
@@ -57,7 +54,7 @@ export class Flow extends Iterable
 				animation = this.vars.pool[this.vars.order[k]];
 				if(animation.nextFrame() === true)
 				{
-					done.push(animation.getTag());
+					done.push(animation.tag);
 				}
 			}
 
@@ -79,9 +76,12 @@ export class Flow extends Iterable
 
 	add(params)
 	{
-		params.parent = this;
 		let animation = new Animation(params);
-		let tag = animation.getTag();
+		animation.flow = this;
+
+		let tag = animation.tag;
+
+		this.done(tag, false); // kill previous animation, if any
 
 		this.vars.pool[tag] = animation;
 		this.vars.order.push(tag);
@@ -119,13 +119,13 @@ export class Flow extends Iterable
 		return this;
 	}
 
-	get parent()
+	get grid()
 	{
-		return this.vars.parent;
+		return this.vars.grid;
 	}
 
-	set parent(parent)
+	set grid(grid)
 	{
-		this.vars.parent = parent || null;
+		this.vars.grid = grid || null;
 	}
 };

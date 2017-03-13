@@ -1,3 +1,5 @@
+import '/src/util.js';
+
 export class Animation
 {
 	constructor(options = {})
@@ -7,26 +9,23 @@ export class Animation
 		this.opts = {
 			cb: function(){},
 			duration: options.duration || 1000,
-			tag: _.random(10000, 99999),
+			tag: Util.randomInt(),
 			start: {},
 			end: {},
 		};
 
-		if(_.isArray(this.opts.duration))
-		{
-			this.opts.duration = _.random(this.opts.duration[0], this.opts.duration[1]);
-		}
+		// if(Util.isArray(this.opts.duration))
+		// {
+		// 	this.opts.duration = _.random(this.opts.duration[0], this.opts.duration[1]);
+		// }
 
 		this.vars = {
 			step: 0,
-			current: _.clone(this.opts.start)
+			current: this.opts.start
 		};
 
-		this.parent = options.parent;
-		this.vars.steps = Math.ceil(this.opts.duration / this.parent.getFrameRate());
+		this.vars.steps = Math.ceil(this.opts.duration / this.flow.frameRate());
 		this.vars.increments = this.calcIncrements();
-
-		this.vars.promise = new Util.Promise();
 	}
 
 	/**
@@ -93,18 +92,23 @@ export class Animation
 		return this.opts.tag;
 	}
 
-	get parent()
+	get flow()
 	{
-		return this.vars.parent;
+		return this.vars.flow;
 	}
 
-	set parent(parent)
+	set flow(flow)
 	{
-		this.vars.parent = parent || null;
+		this.vars.flow = flow || null;
 	}
 
 	get promise()
 	{
+		if(!this.vars.promise)
+		{
+			this.vars.promise = new Util.Promise();
+		}
+
 		return this.vars.promise;
 	}
 }

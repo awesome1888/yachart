@@ -48,6 +48,16 @@ export class Point extends BaseClass
 		return this.grid.isVisible(this.pixel);
 	}
 
+	get id()
+	{
+		if(!this.vars.id)
+		{
+			this.vars.id = Util.randomInt();
+		}
+
+		return this.vars.id;
+	}
+
 	appear()
 	{
 		let p = new Util.Promise();

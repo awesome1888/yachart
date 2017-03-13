@@ -3,9 +3,9 @@ import '/src/util.js';
 
 export class Circle extends Point
 {
-	constructor()
+	constructor(options)
 	{
-		super();
+		super(options);
 
 		this.animationState = {
 			radius: this.defaultRadius,
@@ -33,32 +33,21 @@ export class Circle extends Point
 		);
 	}
 
-	set radiusAnimated(value)
+	animateRadius(value)
 	{
-		let tag = 'point_resize_'+this.getId();
-
-		let rSt = this.getRealState();
-		let vSt = this.getVisibleState();
-
-		let flow = this.parent().getFlow();
-		flow.done(tag, false); // kill previous animation, if any
-
-		parameters = parameters || {};
-		let duration = parameters.duration || 100;
+		this.radius = value;
 
 		if(this.radius != this.radiusAnimated)
 		{
-			return flow.add({
-				cb(step){
-					vSt.radius = step.radius;
-				},
-				tag: tag,
-				duration: duration,
+			return this.grid.flow.add({
+				tag: 'point_resize_'+this.id,
+				duration: 100,
+				//easing: '',
 				start: {
-					radius: vSt.radius
+					radius: this.radiusAnimated, // current value (could be any)
 				},
 				end: {
-					radius: rSt.radius
+					radius: this.radius, // value to reach
 				}
 			});
 		}
@@ -66,6 +55,11 @@ export class Circle extends Point
 		{
 			return Util.Promise.getResolvedDumb();
 		}
+	}
+
+	set radiusAnimated(value)
+	{
+		this.animationState.radius = value;
 	}
 
 	get radiusAnimated()

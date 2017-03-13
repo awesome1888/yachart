@@ -5,6 +5,7 @@
 import {BaseClass} from '/src/util/baseclass.es6';
 import {Manager as PointManager} from '/src/chart/point/manager.es6';
 import {Canvas} from '/src/chart/canvas.es6';
+import {Flow} from '/src/chart/fx/animation/flow.es6';
 
 export class Grid extends BaseClass
 {
@@ -546,6 +547,19 @@ export class Grid extends BaseClass
 		}
 
 		return this.vars.canvas;
+	}
+
+	get flow()
+	{
+		if(this.vars.flow === undefined)
+		{
+			let flow = new Flow();
+			flow.grid = this;
+
+			this.vars.flow = flow;
+		}
+
+		return this.vars.flow;
 	}
 
 	get points()

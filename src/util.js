@@ -15,6 +15,11 @@
 		return fn && (Object.prototype.toString.call(fn) == '[object Array]');
 	};
 
+	Util.randomInt = function()
+	{
+		return Math.ceil(Math.random() * 100000);
+	};
+
 	Util.throttle = function(cb, timeout, opts)
 	{
 		if(!this.isFunction(cb))
@@ -70,7 +75,7 @@
 
 	Util.pos = function(node)
 	{
-		var rect = node.getBoundingClientRect();
+		return node.getBoundingClientRect();
 		// var docElement = document.documentElement;
 		// var body = document.body;
 
@@ -80,8 +85,6 @@
 		// r.height = rect.bottom - rect.top;
 		// r.right = rect.right + (docElement.scrollLeft || body.scrollLeft);
 		// r.bottom = rect.bottom + (docElement.scrollTop || body.scrollTop);
-
-		return rect;
 	};
 
 	Util.bindEvent = function(obj, name, cb)
