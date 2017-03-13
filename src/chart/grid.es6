@@ -240,7 +240,7 @@ export class Grid extends BaseClass
 	onClick(coords, coordsGlobal)
 	{
 		// paddings already excluded
-		let data = this.pixel2Data(coordsGlobal, {paddingTop: 0, paddingBottom: 0});
+		let data = this.pixel2Data(coordsGlobal, {paddingTop: 0, paddingLeft: 0});
 
 		this.addPoint(data);
 

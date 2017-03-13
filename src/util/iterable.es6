@@ -16,21 +16,61 @@ export class Iterable extends BaseClass
 		this.vars.order.push(order);
 	}
 
-	insertByOrder(order, item)
+	insertByOrder(order, instance)
 	{
 		if(this.count)
 		{
-			let after = this.findAfter(order);
+			this.vars.values[order] = instance;
+
+			let index = this.findIndex(order);
+			if(index.type !== 'r')
+			{
+				this.vars.order.splice(index.i + 1, 0, order);
+			}
 		}
 		else
 		{
-			this.push(order, item);
+			this.push(order, instance);
 		}
 	}
 
-	findAfter(order)
+	deleteByOrder(order)
 	{
-		//if()
+		if(this.count)
+		{
+			let index = this.findIndex(order);
+			if(index.type === 'r')
+			{
+				delete(this.vars.values[order]);
+				this.vars.order.splice(index.i, 1);
+			}
+		}
+	}
+
+	/**
+	 * @access private
+	 * @param order
+	 * @returns {number}
+	 */
+	findIndex(order)
+	{
+		// todo: currently, fullscan, but implement binary search
+		let item = null;
+		let i;
+		for(i = 0; i < this.vars.order.length; i++)
+		{
+			item = this.vars.order[i];
+			if(item > order) // as soon as item becomes greater than order, we found our place
+			{
+				return {i: i - 1};
+			}
+			else if(item == order)
+			{
+				return {i: i, type: 'r'};
+			}
+		}
+
+		return {i: i - 1};
 	}
 
 	get count()
@@ -73,7 +113,7 @@ export class Iterable extends BaseClass
 			return null;
 		}
 
-		return this.vars.values[this.vars.order[k]];
+		return {order: this.vars.order[k], instance: this.vars.values[this.vars.order[k]]};
 	}
 
 	get first()

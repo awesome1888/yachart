@@ -66,8 +66,8 @@ export class Manager extends Iterable
 
 		if(this.count)
 		{
-			let firstPx = this.first.getPixelRelative(parameters);
-			let lastPx = this.last.getPixelRelative(parameters);
+			let firstPx = this.first.instance.getPixelRelative(parameters);
+			let lastPx = this.last.instance.getPixelRelative(parameters);
 
 			bounds.square[0].x = firstPx.x;
 			bounds.square[3].x = firstPx.x;
