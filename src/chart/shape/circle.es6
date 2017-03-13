@@ -1,7 +1,17 @@
 import {Point} from '/src/chart/shape/point.es6';
+import '/src/util.js';
 
 export class Circle extends Point
 {
+	constructor()
+	{
+		super();
+
+		this.animationState = {
+			radius: this.defaultRadius,
+		};
+	}
+
 	render(parameters)
 	{
 		let location = this.grid.data2Pixel(this.location);
@@ -23,43 +33,58 @@ export class Circle extends Point
 		);
 	}
 
-	// get bounds()
-	// {
-	// 	let coordinates = this.coordinates;
-	// 	let bounds = [coordinates, coordinates];
-	// 	let radius = this.radius;
-	//
-	// 	bounds[0].x -= radius;
-	// 	bounds[0].y += radius;
-	//
-	// 	bounds[1].x += radius;
-	// 	bounds[1].y -= radius;
-	//
-	// 	return bounds;
-	// }
+	set radiusAnimated(value)
+	{
+		let tag = 'point_resize_'+this.getId();
 
-	// get boundsCenter00()
-	// {
-	// 	let coordinates = this.coordinatesCenter00;
-	// 	let bounds = [coordinates, coordinates];
-	// 	let radius = this.radius;
-	//
-	// 	bounds[0].x -= radius;
-	// 	bounds[0].y += radius;
-	//
-	// 	bounds[1].x += radius;
-	// 	bounds[1].y -= radius;
-	//
-	// 	return bounds;
-	// }
+		let rSt = this.getRealState();
+		let vSt = this.getVisibleState();
+
+		let flow = this.parent().getFlow();
+		flow.done(tag, false); // kill previous animation, if any
+
+		parameters = parameters || {};
+		let duration = parameters.duration || 100;
+
+		if(this.radius != this.radiusAnimated)
+		{
+			return flow.add({
+				cb(step){
+					vSt.radius = step.radius;
+				},
+				tag: tag,
+				duration: duration,
+				start: {
+					radius: vSt.radius
+				},
+				end: {
+					radius: rSt.radius
+				}
+			});
+		}
+		else
+		{
+			return Util.Promise.getResolvedDumb();
+		}
+	}
+
+	get radiusAnimated()
+	{
+		return this.animationState.radius;
+	}
 
 	get radius()
 	{
-		return this.vars.radius || 5;
+		return this.vars.radius || this.defaultRadius;
 	}
 
 	set radius(value)
 	{
 		this.vars.radius = value;
+	}
+
+	get defaultRadius()
+	{
+		return 5;
 	}
 }

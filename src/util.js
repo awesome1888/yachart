@@ -364,5 +364,12 @@
 
 		return p;
 	};
+	Util.Promise.getResolvedDumb = function()
+	{
+		let p = new this();
+		p.resolve();
+
+		return p;
+	};
 
 }).call(this);
