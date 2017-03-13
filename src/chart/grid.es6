@@ -242,9 +242,8 @@ export class Grid extends BaseClass
 		// paddings already excluded
 		let data = this.pixel2Data(coordsGlobal, {paddingTop: 0, paddingLeft: 0});
 
-		this.addPoint(data);
-
-		//console.dir('Click: '+coordsGlobal.x+' : '+coordsGlobal.y+' => '+data.x+' : '+data.y);
+		this.addPoint([data.x, data.y]);
+		this.render();
 	}
 
 	onCanvasClick(coords)

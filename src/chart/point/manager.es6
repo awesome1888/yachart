@@ -18,36 +18,39 @@ export class Manager extends Iterable
 
 	add(data)
 	{
-		let params = {grid: data.grid};
+		let params = {
+			grid: data.grid,
+			x: data[0],
+			y: data[1]
+		};
+
 		let type = 'circle'; // by default
-		if(Util.isArray(data))
+		if(data[2])
 		{
-			params.x = data[0];
-			params.y = data[1];
-			if(data[2])
-			{
-				type = data[2];
-			}
+			type = data[2];
 		}
 
-		let x = params.x;
-		let existing = this.findItemByX(x);
-		if(existing)
-		{
-			console.dir('existing');
-			existing.y = params.y;
-		}
-		else
-		{
-			if(type)
-			{
-				if(type.toLowerCase() === 'circle')
-				{
-					//super.insertByOrder(params.x, new Circle(params));
-					super.push(params.x, new Circle(params));
-				}
-			}
-		}
+		let instance = new Circle(params);
+		this.insertByOrder(data[0], instance);
+
+		// let x = params.x;
+		// let existing = this.findItemByX(x);
+		// if(existing)
+		// {
+		// 	console.dir('existing');
+		// 	existing.y = params.y;
+		// }
+		// else
+		// {
+		// 	if(type)
+		// 	{
+		// 		if(type.toLowerCase() === 'circle')
+		// 		{
+		// 			//super.insertByOrder(params.x, new Circle(params));
+		// 			super.push(params.x, new Circle(params));
+		// 		}
+		// 	}
+		// }
 	}
 
 	findItemByX(x)

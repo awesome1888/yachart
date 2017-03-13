@@ -69,7 +69,7 @@ export class Chart extends DOMController
 			return {x: 0, y: 0};
 		}
 
-		return {x: last.x, y: last.y};
+		return {x: last.order, y: last.instance.y};
 	}
 
 	get gridContainer()
